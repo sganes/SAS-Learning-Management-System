@@ -181,17 +181,9 @@
     <Compile Include="Migrations\201707191451460_SeededATeacherUser1.Designer.cs">
       <DependentUpon>201707191451460_SeededATeacherUser1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707200739250_first migrationAlf.cs" />
-    <Compile Include="Migrations\201707200739250_first migrationAlf.Designer.cs">
-      <DependentUpon>201707200739250_first migrationAlf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707201122474_CreateUser.cs" />
-    <Compile Include="Migrations\201707201122474_CreateUser.Designer.cs">
-      <DependentUpon>201707201122474_CreateUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707201243563_Login.cs" />
-    <Compile Include="Migrations\201707201243563_Login.Designer.cs">
-      <DependentUpon>201707201243563_Login.cs</DependentUpon>
+    <Compile Include="Migrations\201707201131246_First.cs" />
+    <Compile Include="Migrations\201707201131246_First.Designer.cs">
+      <DependentUpon>201707201131246_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -207,6 +199,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\bibliotek.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -274,14 +267,8 @@
     <EmbeddedResource Include="Migrations\201707191451460_SeededATeacherUser1.resx">
       <DependentUpon>201707191451460_SeededATeacherUser1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707200739250_first migrationAlf.resx">
-      <DependentUpon>201707200739250_first migrationAlf.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707201122474_CreateUser.resx">
-      <DependentUpon>201707201122474_CreateUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707201243563_Login.resx">
-      <DependentUpon>201707201243563_Login.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707201131246_First.resx">
+      <DependentUpon>201707201131246_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
