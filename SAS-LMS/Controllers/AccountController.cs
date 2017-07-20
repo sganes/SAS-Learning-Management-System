@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SAS_LMS.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace SAS_LMS.Controllers
 {
@@ -151,7 +152,10 @@ namespace SAS_LMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                DateTime thisDay = DateTime.Today;
+                
+        var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FName = model.FName, LName = model.LName, EnrollmentDate = thisDay };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
