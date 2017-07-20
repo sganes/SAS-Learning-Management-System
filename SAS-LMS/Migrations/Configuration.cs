@@ -50,7 +50,16 @@ namespace SAS_LMS.Migrations
 
             var adminUser = userManager.FindByName("headteacher@lexicon.se");
             userManager.AddToRole(adminUser.Id, "Teacher");
-
-        }
-    }
-}
+                                                                                                                
+            context.ActivityTypes.AddOrUpdate(                                                                  
+                p => p.Name,                                                                                    
+                  new ActivityType {  Name = "e-Learning" },                                                    
+                  new ActivityType {  Name = "Lecture" },                                                       
+                  new ActivityType {  Name = "Exercise" },                                                      
+                  new ActivityType {  Name = "Submission" }                                                     
+                );                                                                                              
+                                                                                                                
+        }                                                                                                       
+    }                                                                                                           
+}                                                                                                               
+                                                                                                                

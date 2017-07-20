@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -39,5 +40,12 @@ namespace SAS_LMS.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Module> Modules { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<ActivityType> ActivityTypes { get; set; }
+
+
     }
 }

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SAS_LMS.Models.Course>
+
+<div class="CourseHeader">
+        Ongoing and Upcoming Courses
+       <span class="pull-right">
+           @Html.ActionLink("Add a new Course", "Create") |
+           @Html.ActionLink("Course History", "FinishedCourses")
+           
+       </span>
+        
+    
+    
+</div>
+
+<div class="CouseCointainer">
+    <ul class="courses">
+        @foreach (var course in Model)
+        {
+            <li>
+                <div class="date">
+                    <div class="monthyear">
+                        @course.StartDate.ToString("MMM yyyy")
+                    </div>
+                    <div class="day">
+                        @course.StartDate.ToString("d ")
+                    </div>
+                </div>
+                <div class="details">
+                    <span class="coursename">
+                        @course.Name
+                    </span>
+                    <br />
+                    <span class="coursedescription">
+                        @course.Description
+                    </span>
+                    <button class="btn btn-default btn-sm pull-right ">More...</button>
+
+                </div>
+                <hr />
+            </li>
+
+        }
+
+    </ul>
+</div>

@@ -1,7 +1,9 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 90px;
     padding-bottom: 20px;
+    font-size: 18px;
 }
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -21,4 +23,65 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+/*Custom layouts*/
+
+.courses{
+    list-style:none;
+}
+
+
+.courses > li{
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.courses > li .details{
+    position: absolute;
+    top: 0px;
+    left: 100px;
+    width: 500px;
+}
+
+.courses > li .date {
+        background : #808080;
+        color:white;
+        text-align:center;
+        width: 80px;
+        border-radius: 8px;
+    }
+
+.courses > li .date .monthyear {
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 2px 6px;
+        }
+
+.courses > li .day {
+        background : #f7f7f7;
+        color:#333;
+        font-size: 20px;
+        padding: 6px 12px;
+    }
+.gigs > li .details .coursename{
+    font-weight: bold;
+    display: block;
+    background : #f7f7f7;
+}
+
+.courses > li .details .coursedescription {
+        font-size: 15px;
+        
+    }
+
+.courses > li .details a {
+        display: inline-block;
+    }
+
+.CourseHeader {
+   background : #f7f7f7;
+   margin-bottom: 60px;
 }

@@ -7,13 +7,13 @@ namespace SAS_LMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SeededATeacherUser1 : IMigrationMetadata
+    public sealed partial class AddedRequiredfieldsformodels : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeededATeacherUser1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedRequiredfieldsformodels));
         
         string IMigrationMetadata.Id
         {
-            get { return "201707191451460_SeededATeacherUser1"; }
+            get { return "201707200956442_Added Required fields for models"; }
         }
         
         string IMigrationMetadata.Source
