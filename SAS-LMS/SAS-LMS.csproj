@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201707191451460_SeededATeacherUser1.Designer.cs">
       <DependentUpon>201707191451460_SeededATeacherUser1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707201131246_First.cs" />
+    <Compile Include="Migrations\201707201131246_First.Designer.cs">
+      <DependentUpon>201707201131246_First.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -195,6 +199,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\bibliotek.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -261,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707191451460_SeededATeacherUser1.resx">
       <DependentUpon>201707191451460_SeededATeacherUser1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707201131246_First.resx">
+      <DependentUpon>201707201131246_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
