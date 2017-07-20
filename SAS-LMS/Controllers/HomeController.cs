@@ -15,7 +15,7 @@ namespace SAS_LMS.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "The SAS - Learning Management System.";
 
             return View();
         }
