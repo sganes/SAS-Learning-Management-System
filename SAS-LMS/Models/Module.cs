@@ -23,6 +23,10 @@ namespace SAS_LMS.Models
         [Display(Name = "End Date")]
         public DateTime EndDate { get; set; }
 
+        public int CourseId { get; set; }
+
+        public virtual Course Course { get; set; }
+
         [Display(Name = "Activities")]
         public virtual ICollection<Activity> ModuleActivities { get; set; }
     }

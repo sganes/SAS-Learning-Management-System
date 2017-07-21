@@ -27,19 +27,29 @@ textarea {
 
 /*Bootstrap overriding */
 
+.panel{
+    margin-bottom: 50px;
+}
+
 .panel-title {
        font-size: 20px;
+        color:red;
 }
 
-.glyphicon-trash {
-  margin-left:20px;
-}
 
 .panel-default > .panel-heading {
-  background-color: #f6f6f6;;
+  background-color: #f6f6f6;
+
 }
 
+.glyphicon{
+    color:#198521;
+    margin:5px;
+}
 
+.glyphicon:hover{
+      color: #080808;
+}
 /*Custom layouts*/
 
 .courses{
@@ -95,6 +105,7 @@ textarea {
    margin-bottom: 60px;
 }
 
+/*Modifying the default classes*/
 .navbar-inverse .navbar-brand {
   color: white;
 }
@@ -124,3 +135,13 @@ a:focus {
   color: #080808;
   text-decoration: underline;
 }
+
+.table thead > tr > th,
+.table tbody > tr > th,
+.table tfoot > tr > th,
+.table thead > tr > td,
+.table tbody > tr > td,
+.table tfoot > tr > td {
+   border-top: none
+}
+

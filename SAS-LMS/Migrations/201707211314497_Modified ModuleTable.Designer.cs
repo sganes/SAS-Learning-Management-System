@@ -7,13 +7,13 @@ namespace SAS_LMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class First : IMigrationMetadata
+    public sealed partial class ModifiedModuleTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(First));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ModifiedModuleTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201707201131246_First"; }
+            get { return "201707211314497_Modified ModuleTable"; }
         }
         
         string IMigrationMetadata.Source
