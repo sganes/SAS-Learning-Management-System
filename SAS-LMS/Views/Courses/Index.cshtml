@@ -29,11 +29,17 @@
                     <span class="coursename">
                         @course.Name
                     </span>
+                    
+                   
                     <br />
                     <span class="coursedescription">
                         @course.Description
                     </span>
-                    <button class="btn btn-default btn-sm pull-right ">More...</button>
+                    &emsp;
+                    <span class="glyphicon glyphicon-folder-open" onmouseover="this.style.cursor='pointer'" 
+                          onclick="@("window.location.href='" + @Url.Action("Details", "Courses", new { id = course.Id }) + "'");"></span>
+
+                   
 
                 </div>
                 <hr />

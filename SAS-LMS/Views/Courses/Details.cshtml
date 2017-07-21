@@ -1,42 +1,25 @@
 ﻿@model SAS_LMS.Models.Course
 
-@{
-    ViewBag.Title = "Details";
-}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="panel-title pull-right glyphicon glyphicon-trash" onmouseover="this.style.cursor='pointer'"
+              onclick="@("window.location.href='" + @Url.Action("Delete", "Courses", new { id = Model.Id }) + "'");"></span>
+        <span class="panel-title pull-right glyphicon glyphicon-pencil" onmouseover="this.style.cursor='pointer'"
+              onclick="@("window.location.href='" + @Url.Action("Edit", "Courses", new { id = Model.Id }) + "'");"></span>
+        <h1 class="panel-title">Course</h1>
+       
+       
+    </div>
+    <div class="panel-body">
+        <h4>
+            <span class="pull-right">
+                Start Date :  &emsp;  @Model.StartDate.ToShortDateString()
+            </span>
+            <p>Name :   &emsp;      @Model.Name</p>
+            <p>Description:  &emsp; @Model.Description</p>
+        </h4>
 
-<h2>Details</h2>
+    </div>
 
-<div>
-    <h4>Course</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
