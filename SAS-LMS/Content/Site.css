@@ -35,6 +35,10 @@ textarea {
   margin-left:20px;
 }
 
+.panel-default > .panel-heading {
+  background-color: #f6f6f6;;
+}
+
 
 /*Custom layouts*/
 
@@ -75,11 +79,6 @@ textarea {
         color:#333;
         font-size: 20px;
         padding: 6px 12px;
-    }
-.gigs > li .details .coursename{
-    font-weight: bold;
-    display: block;
-    background : #f7f7f7;
 }
 
 .courses > li .details .coursedescription {
@@ -92,6 +91,36 @@ textarea {
     }
 
 .CourseHeader {
-   background : #f7f7f7;
+   background :#f6f6f6;;
    margin-bottom: 60px;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
+}
+
+.navbar-inverse .navbar-brand:hover {
+  color: #ffffff;
+  background-color: red;
+}
+
+ .navbar-brand
+{
+   color: #ffffff;
+  background-color: red;
+}
+  
+ .navbar-inverse .navbar-nav > li > a {
+  color:  #8eff96;
+}
+
+ a {
+  color: #198521;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #080808;
+  text-decoration: underline;
 }
