@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace SAS_LMS.Controllers
 {
-    public class HomeController : Controller 
+    public class HomeController : Controller
     {
 
-        public ActionResult Index() 
+        public ActionResult Index()
         {
-
+            if (User.Identity.IsAuthenticated && User.IsInRole("Teacher"))
+            {
+                return RedirectToAction("Index", "Courses");
+            }
             return View();
         }
 
