@@ -1,45 +1,71 @@
 ﻿@model IEnumerable<SAS_LMS.Models.Course>
 
-<div class="CourseHeader">
+
+<div class="panel panel-default">
+    <div class="panel-heading CourseHeader">
+        <span class="pull-right">
+            @Html.ActionLink("Add a new Course", "Create")
+            &nbsp;
+            @Html.ActionLink("Course History", "FinishedCourses")
+
+        </span>
+          <h1 class="panel-title">Ongoing and Upcoming Courses</h1>
+             
+    </div>
+    <div class="panel-body">
+        <div class="CouseCointainer">
+            <ul class="courses">
+                @foreach (var course in Model)
+                {
+                    <li>
+                        <div class="date">
+                            <div class="monthyear">
+                                @course.StartDate.ToString("MMM yyyy")
+                            </div>
+                            <div class="day">
+                                @course.StartDate.ToString("d ")
+                            </div>
+                        </div>
+                        <div class="details">
+                            <span class="coursename">
+                                @course.Name
+                            </span>
+
+
+                            <br />
+                            <span class="coursedescription">
+                                @course.Description
+                            </span>
+                            &emsp;
+                            <span class="glyphicon glyphicon-folder-open" onmouseover="this.style.cursor='pointer'"
+                                  onclick="@("window.location.href='" + @Url.Action("Details", "Courses", new { id = course.Id }) + "'");"></span>
+                        </div>
+                        <hr />
+                    </li>
+
+                }
+
+            </ul>
+        </div>
+       
+    </div>
+</div>
+
+
+
+
+
+
+
+
+@*<div class="CourseHeader">
         Ongoing and Upcoming Courses
        <span class="pull-right">
-           @Html.ActionLink("Add a new Course", "Create") |
+           @Html.ActionLink("Add a new Course", "Create") 
+           &nbsp;
            @Html.ActionLink("Course History", "FinishedCourses")
            
        </span>    
-</div>
+</div>*@
 
-<div class="CouseCointainer">
-    <ul class="courses">
-        @foreach (var course in Model)
-        {
-            <li>
-                <div class="date">
-                    <div class="monthyear">
-                        @course.StartDate.ToString("MMM yyyy")
-                    </div>
-                    <div class="day">
-                        @course.StartDate.ToString("d ")
-                    </div>
-                </div>
-                <div class="details">
-                    <span class="coursename">
-                        @course.Name
-                    </span>
-                    
-                   
-                    <br />
-                    <span class="coursedescription">
-                        @course.Description
-                    </span>
-                    &emsp;
-                    <span class="glyphicon glyphicon-folder-open" onmouseover="this.style.cursor='pointer'" 
-                          onclick="@("window.location.href='" + @Url.Action("Details", "Courses", new { id = course.Id }) + "'");"></span>
-                </div>
-                <hr />
-            </li>
 
-        }
-
-    </ul>
-</div>

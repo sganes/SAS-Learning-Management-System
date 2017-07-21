@@ -50,12 +50,12 @@ textarea {
 .glyphicon:hover{
       color: #080808;
 }
+
 /*Custom layouts*/
 
 .courses{
     list-style:none;
 }
-
 
 .courses > li{
     position: relative;
@@ -101,7 +101,8 @@ textarea {
     }
 
 .CourseHeader {
-   background :#f6f6f6;;
+   background :#f6f6f6;
+   color:red;
    margin-bottom: 60px;
 }
 
