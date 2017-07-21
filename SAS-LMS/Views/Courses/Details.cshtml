@@ -79,3 +79,20 @@
     </table>
 </div>
 
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a> 
+        <span class="panel-title pull-right glyphicon glyphicon-user" onmouseover="this.style.cursor='pointer'"
+              onclick="@("window.location.href='" + @Url.Action("Enroll Student", "Courses",
+                       new { id = Model.Id }) + "'");"></span>
+        </a>
+        <h1 class="panel-title">Course Participants</h1>
+
+    </div>
+        <div class="panel-body">
+                Name :   &emsp;      @Model.CourseParticipants
+
+        </div>
+</div>
+
