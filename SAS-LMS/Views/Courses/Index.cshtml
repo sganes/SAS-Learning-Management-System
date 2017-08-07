@@ -4,7 +4,7 @@
         Ongoing and Upcoming Courses
        <span class="pull-right">
            @Html.ActionLink("Add a new Course", "Create") |
-           @Html.ActionLink("Course History", "FinishedCourses")
+           @Html.ActionLink("Course History", "CourseHistory")
            
        </span>    
 </div>
@@ -26,8 +26,7 @@
                     <span class="coursename">
                         @course.Name
                     </span>
-                    
-                   
+                                     
                     <br />
                     <span class="coursedescription">
                         @course.Description
