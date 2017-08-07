@@ -6,111 +6,116 @@ using System.Web.Mvc;
 
 namespace SAS_LMS.Controllers
 {
-    public class ModulesController : Controller
+    public class ActivitiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Modules
+        // GET: Activities
         public ActionResult Index()
         {
-            return View(db.Modules.ToList());
+            var activities = db.Activities.Include(a => a.ActivityType).Include(a => a.Module);
+            return View(activities.ToList());
         }
 
-        // GET: Modules/Details/5
+        // GET: Activities/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
-            if (module == null)
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(module);
+            return View(activity);
         }
 
-        // GET: Modules/Create
+        // GET: Activities/Create
         public ActionResult Create(int id)
         {
+            ViewBag.ActivityTypeId = new SelectList(db.ActivityTypes, "Id", "Name");
             return View();
         }
 
-        // POST: Modules/Create
+        // POST: Activities/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,EndDate")] Module module, int id)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,EndDate,ActivityTypeId")] Activity activity, int id)
         {
             if (ModelState.IsValid)
             {
-                module.CourseId = id;
-                db.Modules.Add(module);
+                activity.ModuleId = id;
+                db.Activities.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Details", "Courses", new { id = module.CourseId });
+                return RedirectToAction("Details", "Modules", new { id = activity.ModuleId });
             }
 
-            return View(module);
+            ViewBag.ActivityTypeId = new SelectList(db.ActivityTypes, "Id", "Name", activity.ActivityTypeId);
+            return View(activity);
         }
 
-        // GET: Modules/Edit/5
+        // GET: Activities/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
-            if (module == null)
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(module);
+            ViewBag.ActivityTypeId = new SelectList(db.ActivityTypes, "Id", "Name", activity.ActivityTypeId);
+            return View(activity);
         }
 
-        // POST: Modules/Edit/5
+        // POST: Activities/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,EndDate")] Module module, int courseId)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,EndDate,ActivityTypeId")] Activity activity, int moduleid)
         {
             if (ModelState.IsValid)
             {
-                module.CourseId = courseId;
-                db.Entry(module).State = EntityState.Modified;
+                activity.ModuleId = moduleid;
+                db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", "Courses", new { id = module.CourseId });
+                return RedirectToAction("Details", "Modules", new { id = activity.ModuleId });
             }
-            return View(module);
+            ViewBag.ActivityTypeId = new SelectList(db.ActivityTypes, "Id", "Name", activity.ActivityTypeId);
+            return View(activity);
         }
 
-        // GET: Modules/Delete/5
+        // GET: Activities/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Module module = db.Modules.Find(id);
-            if (module == null)
+            Activity activity = db.Activities.Find(id);
+            if (activity == null)
             {
                 return HttpNotFound();
             }
-            return View(module);
+            return View(activity);
         }
 
-        // POST: Modules/Delete/5
+        // POST: Activities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Module module = db.Modules.Find(id);
-            db.Modules.Remove(module);
+            Activity activity = db.Activities.Find(id);
+            db.Activities.Remove(activity);
             db.SaveChanges();
-            return RedirectToAction("Details", "Courses", new { id = module.CourseId });
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

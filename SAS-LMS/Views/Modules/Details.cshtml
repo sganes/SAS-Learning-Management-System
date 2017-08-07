@@ -1,50 +1,94 @@
 ﻿@model SAS_LMS.Models.Module
 
-@{
-    ViewBag.Title = "Details";
-}
 
-<h2>Details</h2>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-Courses  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Home Page"
+              onclick="@("window.location.href='" + @Url.Action("Details", "Courses", new { id = Model.CourseId}) + "'");">
+        </span>
 
-<div>
-    <h4>Module</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+        <h1 class="panel-title">Module Details</h1>
+       
+    </div>
+    <div class="panel-body">
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-    </dl>
+        <table class="table">
+            <tr>
+                <td>Name :  @Model.Name</td>
+                <td>Start Date : @Model.StartDate.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <td>Description : @Model.Description </td>
+                <td>End Date : @Model.EndDate.ToShortDateString()</td>
+            </tr>
+       </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="pull-right">
+            @Html.ActionLink("Add a new Activity", "Create", "Activities", new { id = Model.Id }, null)
+        </span>
+        <h1 class="panel-title">Actvities for the Module</h1>
+    </div>
+    <div class="panel-body">
+
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Activity Type</th>
+                <th></th>
+            </tr>
+
+            @if (Model.ModuleActivities.Count() == 0)
+            {
+                <tr>
+                    <td>
+                        Activities are yet to be planned
+                    </td>
+                </tr>
+            }
+
+            @foreach (var item in Model.ModuleActivities)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+
+                    <td>
+                        @item.Description
+                    </td>
+
+                    <td>
+                        @item.StartDate.ToShortDateString()
+                    </td>
+
+                    <td>
+                        @item.EndDate.ToShortDateString()
+                    </td>
+
+                    <td>
+                       @item.ActivityType.Name
+                    </td>
+
+                    <td>
+                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Module"
+                                  onclick="@("window.location.href='" + @Url.Action("Delete", "Activities", new { id = item.Id }) + "'");">
+                            <span class="glyphicon glyphicon-trash" ></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Module"
+                                  onclick="@("window.location.href='" + @Url.Action("Edit", "Activities", new { id = item.Id, moduleId = Model.Id}) + "'");">
+                            <span class="glyphicon glyphicon-pencil" ></span>
+                        </button>
+                    </td>
+
+                </tr>
+            }
+        </table>
+        </div>
+    </div>
