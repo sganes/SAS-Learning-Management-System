@@ -8,7 +8,7 @@ namespace SAS_LMS.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Activity Name")]
         public string Name { get; set; }
 
         [Display(Name = "Description")]
@@ -22,10 +22,14 @@ namespace SAS_LMS.Models
         [Display(Name = "End Date")]
         public DateTime EndDate { get; set; }
 
-        public ActivityType ActivityType { get; set; }
-
         [Required]
         public int ActivityTypeId { get; set; }
+
+        public int ModuleId { get; set; }
+
+        public virtual Module Module { get; set; }
+
+        public virtual ActivityType ActivityType { get; set; }
 
     }
 

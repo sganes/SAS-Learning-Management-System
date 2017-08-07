@@ -9,7 +9,7 @@ namespace SAS_LMS.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Module Name")]
         public string Name { get; set; }
 
         [Display(Name = "Description")]
