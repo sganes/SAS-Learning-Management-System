@@ -1,48 +1,51 @@
 ﻿@model IEnumerable<SAS_LMS.Models.Course>
 
-<div class="CourseHeader">
-    Course History
-</div>
+<div class="panel panel-default">
+    <div class="panel-heading CourseHeader">
+        <span class="pull-right">
+            @Html.ActionLink("Back to Courses", "")
+            &nbsp;
+        </span>
+        <h1 class="panel-title">Course History</h1>
 
-<div class="CouseCointainer">
-    <ul class="courses">
-        @foreach (var course in Model)
-        {
-            if (course.StartDate < DateTime.Today.AddDays(-60))
-            {
-                <li>
-                    <div class="date">
-                        <div class="monthyear">
-                            @course.StartDate.ToString("MMM yyyy")
-                        </div>
-                        <div class="day">
-                            @course.StartDate.ToString("d ")
-                        </div>
-                    </div>
-                    <div class="details">
-                        <span class="coursename">
-                            @course.Name
-                        </span>
+    </div>
+    <div class="panel-body">
 
-                        <br />
-                        <span class="coursedescription">
-                            @course.Description
-                        </span>
-                        &emsp;
-                        <span class="glyphicon glyphicon-folder-open" onmouseover="this.style.cursor='pointer'"
-                              onclick="@("window.location.href='" + @Url.Action("Details", "Courses", new { id = course.Id }) + "'");"></span>
+        <div class="CouseCointainer">
+            <ul class="courses">
+                @foreach (var course in Model)
+                {
+                    if (course.StartDate < DateTime.Today.AddDays(-60))
+                    {
+                        <li>
+                            <div class="date">
+                                <div class="monthyear">
+                                    @course.StartDate.ToString("MMM yyyy")
+                                </div>
+                                <div class="day">
+                                    @course.StartDate.ToString("d ")
+                                </div>
+                            </div>
+                            <div class="details">
+                                <span class="coursename">
+                                    @course.Name
+                                </span>
 
+                                <br />
+                                <span class="coursedescription">
+                                    @course.Description
+                                </span>
+                                &emsp;
+                                <span class="glyphicon glyphicon-folder-open" onmouseover="this.style.cursor='pointer'"
+                                      onclick="@("window.location.href='" + @Url.Action("Details", "Courses", new { id = course.Id }) + "'");"></span>
 
+                            </div>
+                            <hr />
+                        </li>
+                    }
+                }
 
-                        @*<button class="btn btn-default btn-sm pull-right ">More...</button>*@
-                        <a href="#" class="btn btn-success btn-lg pull-right">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Students
-                        </a>
-                    </div>
-                    <hr />
-                </li>
-            }
-        }
-
-    </ul>
+            </ul>
+        </div>
+    </div>
 </div>
