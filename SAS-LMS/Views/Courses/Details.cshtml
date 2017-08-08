@@ -1,25 +1,112 @@
 ﻿@model SAS_LMS.Models.Course
 
+
 <div class="panel panel-default">
     <div class="panel-heading">
-        <span class="panel-title pull-right glyphicon glyphicon-trash" onmouseover="this.style.cursor='pointer'"
+        <span class="glyphicon glyphicon-trash pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Course"
               onclick="@("window.location.href='" + @Url.Action("Delete", "Courses", new { id = Model.Id }) + "'");"></span>
-        <span class="panel-title pull-right glyphicon glyphicon-pencil" onmouseover="this.style.cursor='pointer'"
+
+        <span class="glyphicon glyphicon-pencil  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Course"
               onclick="@("window.location.href='" + @Url.Action("Edit", "Courses", new { id = Model.Id }) + "'");"></span>
+
+        <span class="glyphicon glyphicon-Courses  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Home Page"
+              onclick="@("window.location.href='" + @Url.Action("Index", "Courses") + "'");"></span>
+
         <h1 class="panel-title">Course</h1>
-       
-       
     </div>
     <div class="panel-body">
-        <h4>
-            <span class="pull-right">
-                Start Date :  &emsp;  @Model.StartDate.ToShortDateString()
-            </span>
-            <p>Name :           &emsp; @Model.Name</p>
-            <p>Description:     &emsp; @Model.Description</p>
-        </h4>
-
+        <table class="table">
+            <tr>
+                <td>Name :  @Model.Name</td>
+                <td>Start Date : @Model.StartDate.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <td>Description : @Model.Description </td>
+            </tr>
+        </table>
     </div>
 
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <span class="pull-right">
+            @Html.ActionLink("Add a new Module", "Create", "Modules", new { id = Model.Id }, null)
+        </span>
+        <h1 class="panel-title">Course Modules</h1>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th></th>
+            </tr>
+
+            @if (Model.CourseModules.Count() == 0)
+            {
+                <tr>
+                    <td>
+                        Modules are yet to be planned
+                    </td>
+                </tr>
+            }
+
+            @foreach (var item in Model.CourseModules)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+
+                    <td>
+                        @item.Description
+                    </td>
+
+                    <td>
+                        @item.StartDate.ToShortDateString()
+                    </td>
+
+                    <td>
+                        @item.EndDate.ToShortDateString()
+                    </td>
+                    <td>
+
+                        <button type="button" class="btn btn-default btn-xs pull-right"  onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Module"
+                              onclick="@("window.location.href='" + @Url.Action("Delete", "Modules", new { id = item.Id }) + "'");">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+
+                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Module"
+                              onclick="@("window.location.href='" + @Url.Action("Edit", "Modules", new { id = item.Id, courseId = Model.Id}) + "'");">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+
+                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Show Activities"
+                                onclick="@("window.location.href='" + @Url.Action("Details", "Modules", new { id = item.Id }) + "'");">
+                            <span class="glyphicon glyphicon-folder-open"> </span>
+                        </button>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a> 
+        <span class="pull-right glyphicon glyphicon-user" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Add New User"
+              onclick="@("window.location.href='" + @Url.Action("EnrollStudent", "Courses",
+                       new { id = Model.Id }) + "'");"></span>
+        <h1 class="panel-title">Course Participants</h1>
+    </div>
+    <div class="panel-body">
+        Name :   &emsp;      @Model.CourseParticipants
+    </div>
 </div>
 

@@ -7,13 +7,13 @@ namespace SAS_LMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedRequiredfieldsformodels : IMigrationMetadata
+    public sealed partial class ModifiedActivityTypetovirtualinActivityModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedRequiredfieldsformodels));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ModifiedActivityTypetovirtualinActivityModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201707200956442_Added Required fields for models"; }
+            get { return "201708071140215_Modified ActivityType to virtual in Activity Model"; }
         }
         
         string IMigrationMetadata.Source

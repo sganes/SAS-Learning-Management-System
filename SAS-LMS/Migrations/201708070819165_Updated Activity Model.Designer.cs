@@ -7,13 +7,13 @@ namespace SAS_LMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Addedmodels : IMigrationMetadata
+    public sealed partial class UpdatedActivityModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Addedmodels));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedActivityModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201707200949234_Added models"; }
+            get { return "201708070819165_Updated Activity Model"; }
         }
         
         string IMigrationMetadata.Source
