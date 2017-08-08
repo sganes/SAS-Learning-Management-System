@@ -12,7 +12,6 @@ namespace SAS_LMS.Models
         [Display(Name = "Course Name")]
         public string Name { get; set; }
 
-
         [Display(Name = "Description")]
         public string Description { get; set; }
 
