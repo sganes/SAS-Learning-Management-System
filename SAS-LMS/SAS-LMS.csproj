@@ -177,14 +177,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708070819165_Updated Activity Model.cs" />
-    <Compile Include="Migrations\201708070819165_Updated Activity Model.Designer.cs">
-      <DependentUpon>201708070819165_Updated Activity Model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708071140215_Modified ActivityType to virtual in Activity Model.cs" />
-    <Compile Include="Migrations\201708071140215_Modified ActivityType to virtual in Activity Model.Designer.cs">
-      <DependentUpon>201708071140215_Modified ActivityType to virtual in Activity Model.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -269,6 +261,7 @@
     <Content Include="Views\Activities\Details.cshtml" />
     <Content Include="Views\Activities\Edit.cshtml" />
     <Content Include="Views\Activities\Index.cshtml" />
+    <Content Include="Views\Courses\CourseHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -280,14 +273,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708070819165_Updated Activity Model.resx">
-      <DependentUpon>201708070819165_Updated Activity Model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708071140215_Modified ActivityType to virtual in Activity Model.resx">
-      <DependentUpon>201708071140215_Modified ActivityType to virtual in Activity Model.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
