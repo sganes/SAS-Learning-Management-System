@@ -1,9 +1,10 @@
 ﻿@model SAS_LMS.Models.Course
 
 
+
 <div class="panel panel-default">
     <div class="panel-heading">
-        <span class="glyphicon glyphicon-trash pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Course"
+       <span class="glyphicon glyphicon-trash pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Course"
               onclick="@("window.location.href='" + @Url.Action("Delete", "Courses", new { id = Model.Id }) + "'");"></span>
 
         <span class="glyphicon glyphicon-pencil  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Course"
@@ -22,10 +23,38 @@
             </tr>
             <tr>
                 <td>Description : @Model.Description </td>
+
+                @if (Model.StartDate > DateTime.Now)
+                {
+                    <td>Status : Upcoming</td>
+                }
+                else
+                {
+                    <td>
+                        <span>Status : Ongoing</span>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-default btn-sm" id="EndCourse" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="End Course"
+                                onclick="EndCourse()">
+                            End Course
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm" id="ConfirmEndCourse" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Confirm the End of Course"
+                                onclick="@("window.location.href='" + @Url.Action("ConfirmCourseTerminate", "Courses",new { id = Model.Id }) + "'");" style="display:none;">
+                            Confirm End Course
+                           
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm" id="CancelEndCourse" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Cancel the End of Course"
+                                onclick="CancelEndCourse()" style="display:none;">
+                            Cancel
+                        </button>
+                    </td>
+                }
             </tr>
         </table>
     </div>
-
+    <div class="alert alert-danger" role="alert" hidden id="ConfirmEnd">
+        <strong>Warning!</strong> You are about to end the course.
+    </div>
 </div>
 
 <div class="panel panel-default">
@@ -99,7 +128,6 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <a> 
         <span class="pull-right glyphicon glyphicon-user" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Add New User"
               onclick="@("window.location.href='" + @Url.Action("EnrollStudent", "Courses",
                        new { id = Model.Id }) + "'");"></span>
@@ -110,3 +138,21 @@
     </div>
 </div>
 
+
+
+    <script>
+        function EndCourse() {
+            $(document.getElementById("EndCourse")).hide();
+            $( document.getElementById("ConfirmEndCourse")).show();
+            $(document.getElementById("ConfirmEnd")).show();
+            $(document.getElementById("CancelEndCourse")).show();
+        }
+
+        function CancelEndCourse() {
+            $(document.getElementById("EndCourse")).show();
+            $(document.getElementById("ConfirmEndCourse")).hide();
+            $(document.getElementById("ConfirmEnd")).hide();
+            $(document.getElementById("CancelEndCourse")).hide();
+        }
+
+    </script>

@@ -51,6 +51,7 @@ namespace SAS_LMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate")] Course course)
         {
+            course.EndCourse = false;
             if (ModelState.IsValid)
             {
                 db.Courses.Add(course);
@@ -90,6 +91,29 @@ namespace SAS_LMS.Controllers
                 return RedirectToAction("Details", new { id = course.Id });
             }
             return View(course);
+        }
+
+
+        public ActionResult ConfirmCourseTerminate(int? id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Course course = db.Courses.Find(id);
+                if (course == null)
+                {
+                    return HttpNotFound();
+                }
+                course.EndCourse = true;
+                db.Entry(course).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Courses");
+            }
+            else
+                return RedirectToAction("Index", "Courses");
         }
 
         // GET: Courses/Delete/5

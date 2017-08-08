@@ -26,7 +26,7 @@ namespace SAS_LMS.Models
         [Display(Name = "Modules")]
         public virtual ICollection<Module> CourseModules { get; set; }
 
-
+        public bool EndCourse { get; set; }
 
     }
 }
