@@ -262,6 +262,7 @@
     <Content Include="Views\Activities\Edit.cshtml" />
     <Content Include="Views\Activities\Index.cshtml" />
     <Content Include="Views\Courses\EnrollStudent.cshtml" />
+    <Content Include="Views\Account\RegisterStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
