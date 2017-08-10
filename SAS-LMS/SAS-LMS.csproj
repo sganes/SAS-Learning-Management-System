@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201708080934220_Added EndCourse in Course Model.Designer.cs">
       <DependentUpon>201708080934220_Added EndCourse in Course Model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708091110152_Delete Endcourse and Add Endadate in courses.cs" />
+    <Compile Include="Migrations\201708091110152_Delete Endcourse and Add Endadate in courses.Designer.cs">
+      <DependentUpon>201708091110152_Delete Endcourse and Add Endadate in courses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -200,6 +204,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\bibliotek.jpg" />
+    <Content Include="Images\logo.gif" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -266,6 +271,7 @@
     <Content Include="Views\Activities\Edit.cshtml" />
     <Content Include="Views\Activities\Index.cshtml" />
     <Content Include="Views\Courses\CourseHistory.cshtml" />
+    <Content Include="Views\Courses\CourseHistoryView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -281,6 +287,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708080934220_Added EndCourse in Course Model.resx">
       <DependentUpon>201708080934220_Added EndCourse in Course Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708091110152_Delete Endcourse and Add Endadate in courses.resx">
+      <DependentUpon>201708091110152_Delete Endcourse and Add Endadate in courses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

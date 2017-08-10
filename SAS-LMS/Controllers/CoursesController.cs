@@ -1,4 +1,5 @@
 ﻿using SAS_LMS.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -14,7 +15,11 @@ namespace SAS_LMS.Controllers
         // GET: Courses
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            IQueryable<Course> courses;
+            courses = db.Courses.Where(c => c.EndDate > DateTime.Now);
+            if (courses.Count() == 0)
+                ViewBag.Error = "Sorry!!! There are no upcoming courses";
+            return View(courses.ToList());
         }
 
         // GET: Courses/Details/5
@@ -41,7 +46,27 @@ namespace SAS_LMS.Controllers
         // GET: Courses/CourseHistory
         public ActionResult CourseHistory()
         {
-            return View(db.Courses.ToList());
+
+            IQueryable<Course> courses;
+            courses = db.Courses.Where(c => c.EndDate < DateTime.Now);
+            if (courses.Count() == 0)
+                ViewBag.Error = "Sorry!!! There are no courses which has ended";
+            return View(courses.ToList());
+        }
+
+        // View Course Details of Finished Courses
+        public ActionResult CourseHistoryView(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Course course = db.Courses.Find(id);
+            if (course == null)
+            {
+                return HttpNotFound();
+            }
+            return View(course);
         }
 
         // POST: Courses/Create
@@ -49,9 +74,9 @@ namespace SAS_LMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate")] Course course)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,EndDate")] Course course)
         {
-            course.EndCourse = false;
+
             if (ModelState.IsValid)
             {
                 db.Courses.Add(course);
@@ -82,7 +107,7 @@ namespace SAS_LMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate")] Course course)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,EndDate")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -94,27 +119,27 @@ namespace SAS_LMS.Controllers
         }
 
 
-        public ActionResult ConfirmCourseTerminate(int? id)
-        {
-            if (ModelState.IsValid)
-            {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                Course course = db.Courses.Find(id);
-                if (course == null)
-                {
-                    return HttpNotFound();
-                }
-                course.EndCourse = true;
-                db.Entry(course).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index", "Courses");
-            }
-            else
-                return RedirectToAction("Index", "Courses");
-        }
+        //public ActionResult ConfirmCourseTerminate(int? id)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (id == null)
+        //        {
+        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //        }
+        //        Course course = db.Courses.Find(id);
+        //        if (course == null)
+        //        {
+        //            return HttpNotFound();
+        //        }
+        //        course.EndCourse = true;
+        //        db.Entry(course).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index", "Courses");
+        //    }
+        //    else
+        //        return RedirectToAction("Index", "Courses");
+        //}
 
         // GET: Courses/Delete/5
         public ActionResult Delete(int? id)

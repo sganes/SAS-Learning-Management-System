@@ -15,34 +15,20 @@
             <ul class="courses">
                 @foreach (var course in Model)
                 {
-                    if (course.StartDate < DateTime.Today.AddDays(-60))
-                    {
-                        <li>
-                            <div class="date">
-                                <div class="monthyear">
-                                    @course.StartDate.ToString("MMM yyyy")
-                                </div>
-                                <div class="day">
-                                    @course.StartDate.ToString("d ")
-                                </div>
-                            </div>
-                            <div class="details">
-                                <span class="coursename">
-                                    @course.Name
-                                </span>
+                    <li>
+                        @Html.ActionLink(@course.Name, "CourseHistoryView", "Courses", new { id = course.Id }, "")
+                        <br />
+                        <span class="coursedescription">
+                            Start Date: @course.StartDate.ToShortDateString()
+                            &emsp;
+                            &emsp;
+                            End Date : @course.EndDate.ToShortDateString()
+                        </span>
+                        <br />
 
-                                <br />
-                                <span class="coursedescription">
-                                    @course.Description
-                                </span>
-                                &emsp;
-                                <span class="glyphicon glyphicon-folder-open" onmouseover="this.style.cursor='pointer'"
-                                      onclick="@("window.location.href='" + @Url.Action("Details", "Courses", new { id = course.Id }) + "'");"></span>
+                        <hr />
+                    </li>
 
-                            </div>
-                            <hr />
-                        </li>
-                    }
                 }
 
             </ul>
