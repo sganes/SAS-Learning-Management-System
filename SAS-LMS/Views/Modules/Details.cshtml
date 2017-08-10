@@ -1,12 +1,15 @@
 ﻿@model SAS_LMS.Models.Module
 
+<span class="pull-right">
+    @Html.ActionLink("Back", "Details", "Courses", new { id = Model.CourseId }, null)
+</span>
+
+<br />
+<br />
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <span class="pull-right">
-            @Html.ActionLink("Back", "Details", "Courses", new { id = Model.CourseId }, null)
-        </span>
-
+        
         <h1 class="panel-title">Module Details</h1>
 
     </div>

@@ -106,6 +106,14 @@ textarea {
    margin-bottom: 60px;
 }
 
+#Module{
+    background-color :bisque;
+}
+
+#Activities{
+    background-color:aliceblue;
+}
+
 /*Modifying the default classes*/
 /*.navbar-inverse .navbar-brand {
   color: white;
@@ -152,4 +160,13 @@ img {
 
 #Courseviewheading{
     color:red;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 2px solid  #080808;
 }

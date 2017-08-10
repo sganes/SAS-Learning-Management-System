@@ -119,29 +119,7 @@ namespace SAS_LMS.Controllers
         }
 
 
-        //public ActionResult ConfirmCourseTerminate(int? id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (id == null)
-        //        {
-        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //        }
-        //        Course course = db.Courses.Find(id);
-        //        if (course == null)
-        //        {
-        //            return HttpNotFound();
-        //        }
-        //        course.EndCourse = true;
-        //        db.Entry(course).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index", "Courses");
-        //    }
-        //    else
-        //        return RedirectToAction("Index", "Courses");
-        //}
 
-        // GET: Courses/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -165,6 +143,22 @@ namespace SAS_LMS.Controllers
             db.Courses.Remove(course);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // Courses/ViewStudent
+
+        public ActionResult ViewStudent(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Course course = db.Courses.Find(id);
+            if (course == null)
+            {
+                return HttpNotFound();
+            }
+            return View(course);
         }
 
         protected override void Dispose(bool disposing)

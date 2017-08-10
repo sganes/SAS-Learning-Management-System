@@ -185,6 +185,10 @@
     <Compile Include="Migrations\201708091110152_Delete Endcourse and Add Endadate in courses.Designer.cs">
       <DependentUpon>201708091110152_Delete Endcourse and Add Endadate in courses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708100819103_AddCourseIdinIdentityModel.cs" />
+    <Compile Include="Migrations\201708100819103_AddCourseIdinIdentityModel.Designer.cs">
+      <DependentUpon>201708100819103_AddCourseIdinIdentityModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -272,6 +276,8 @@
     <Content Include="Views\Activities\Index.cshtml" />
     <Content Include="Views\Courses\CourseHistory.cshtml" />
     <Content Include="Views\Courses\CourseHistoryView.cshtml" />
+    <Content Include="Views\Account\EnrollStudent.cshtml" />
+    <Content Include="Views\Courses\ViewStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708091110152_Delete Endcourse and Add Endadate in courses.resx">
       <DependentUpon>201708091110152_Delete Endcourse and Add Endadate in courses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708100819103_AddCourseIdinIdentityModel.resx">
+      <DependentUpon>201708100819103_AddCourseIdinIdentityModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

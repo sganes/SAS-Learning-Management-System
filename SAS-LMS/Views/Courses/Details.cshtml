@@ -1,7 +1,8 @@
 ﻿@model SAS_LMS.Models.Course
 
-
-
+<span class="pull-right">@Html.ActionLink("Back", "Index", "Courses")</span>
+<br />
+<br />
 <div class="panel panel-default">
     <div class="panel-heading">
         <span class="glyphicon glyphicon-trash pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Course"
@@ -9,10 +10,6 @@
 
         <span class="glyphicon glyphicon-pencil  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Course"
               onclick="@("window.location.href='" + @Url.Action("Edit", "Courses", new { id = Model.Id }) + "'");"></span>
-
-        <span class="glyphicon glyphicon-Courses  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Home Page"
-              onclick="@("window.location.href='" + @Url.Action("Index", "Courses") + "'");"></span>
-
         <h1 class="panel-title">Course</h1>
     </div>
     <div class="panel-body">
@@ -24,6 +21,14 @@
             <tr>
                 <td>Description : @Model.Description </td>
                 <td>End Date : @Model.EndDate.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" class="btn btn-default btn-lg" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Student Information"
+                            onclick="@("window.location.href='" + @Url.Action("ViewStudent", "Courses", new { id = Model.Id }) + "'");">
+                        <span class="glyphicon glyphicon-user"></span>Manage Students
+                    </button>
+                </td>
             </tr>
         </table>
     </div>
