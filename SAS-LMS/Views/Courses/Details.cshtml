@@ -4,7 +4,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-       <span class="glyphicon glyphicon-trash pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Course"
+        <span class="glyphicon glyphicon-trash pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Course"
               onclick="@("window.location.href='" + @Url.Action("Delete", "Courses", new { id = Model.Id }) + "'");"></span>
 
         <span class="glyphicon glyphicon-pencil  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Course"
@@ -18,42 +18,14 @@
     <div class="panel-body">
         <table class="table">
             <tr>
-                <td>Name :  @Model.Name</td>
+                <td>Course :  @Model.Name</td>
                 <td>Start Date : @Model.StartDate.ToShortDateString()</td>
             </tr>
             <tr>
                 <td>Description : @Model.Description </td>
-
-                @if (Model.StartDate > DateTime.Now)
-                {
-                    <td>Status : Upcoming</td>
-                }
-                else
-                {
-                    <td>
-                        <span>Status : Ongoing</span>
-                        <br />
-                        <br />
-                        <button type="button" class="btn btn-default btn-sm" id="EndCourse" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="End Course"
-                                onclick="EndCourse()">
-                            End Course
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm" id="ConfirmEndCourse" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Confirm the End of Course"
-                                onclick="@("window.location.href='" + @Url.Action("ConfirmCourseTerminate", "Courses",new { id = Model.Id }) + "'");" style="display:none;">
-                            Confirm End Course
-                           
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm" id="CancelEndCourse" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Cancel the End of Course"
-                                onclick="CancelEndCourse()" style="display:none;">
-                            Cancel
-                        </button>
-                    </td>
-                }
+                <td>End Date : @Model.EndDate.ToShortDateString()</td>
             </tr>
         </table>
-    </div>
-    <div class="alert alert-danger" role="alert" hidden id="ConfirmEnd">
-        <strong>Warning!</strong> You are about to end the course.
     </div>
 </div>
 
@@ -82,77 +54,50 @@
                     </td>
                 </tr>
             }
-
-            @foreach (var item in Model.CourseModules)
+            else
             {
-                <tr>
-                    <td>
-                        @item.Name
-                    </td>
 
-                    <td>
-                        @item.Description
-                    </td>
+                foreach (var item in Model.CourseModules)
+                {
+                    <tr>
 
-                    <td>
-                        @item.StartDate.ToShortDateString()
-                    </td>
+                        <td>
+                            @Html.ActionLink(@item.Name, "Details", "Modules", new { id = item.Id }, "")
+                        </td>
 
-                    <td>
-                        @item.EndDate.ToShortDateString()
-                    </td>
-                    <td>
+                        <td>
+                            @item.Description
+                        </td>
 
-                        <button type="button" class="btn btn-default btn-xs pull-right"  onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Module"
-                              onclick="@("window.location.href='" + @Url.Action("Delete", "Modules", new { id = item.Id }) + "'");">
-                        <span class="glyphicon glyphicon-trash"></span>
-                        </button>
+                        <td>
+                            @item.StartDate.ToShortDateString()
+                        </td>
 
-                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Module"
-                              onclick="@("window.location.href='" + @Url.Action("Edit", "Modules", new { id = item.Id, courseId = Model.Id}) + "'");">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                        </button>
+                        <td>
+                            @item.EndDate.ToShortDateString()
+                        </td>
+                        <td>
 
-                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Show Activities"
-                                onclick="@("window.location.href='" + @Url.Action("Details", "Modules", new { id = item.Id }) + "'");">
-                            <span class="glyphicon glyphicon-folder-open"> </span>
-                        </button>
-                    </td>
+                            <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Module"
+                                    onclick="@("window.location.href='" + @Url.Action("Delete", "Modules", new { id = item.Id }) + "'");">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
 
-                </tr>
+                            <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Module"
+                                    onclick="@("window.location.href='" + @Url.Action("Edit", "Modules", new { id = item.Id, courseId = Model.Id }) + "'");">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+
+                            @*<button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Show Activities"
+                                        onclick="@("window.location.href='" + @Url.Action("Details", "Modules", new { id = item.Id }) + "'");">
+                                    <span class="glyphicon glyphicon-folder-open"> </span>
+                                </button>*@
+
+                        </td>
+
+                    </tr>
+                }
             }
         </table>
     </div>
 </div>
-
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <span class="pull-right glyphicon glyphicon-user" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Add New User"
-              onclick="@("window.location.href='" + @Url.Action("EnrollStudent", "Courses",
-                       new { id = Model.Id }) + "'");"></span>
-        <h1 class="panel-title">Course Participants</h1>
-    </div>
-    <div class="panel-body">
-        Name :   &emsp;      @Model.CourseParticipants
-    </div>
-</div>
-
-
-
-    <script>
-        function EndCourse() {
-            $(document.getElementById("EndCourse")).hide();
-            $( document.getElementById("ConfirmEndCourse")).show();
-            $(document.getElementById("ConfirmEnd")).show();
-            $(document.getElementById("CancelEndCourse")).show();
-        }
-
-        function CancelEndCourse() {
-            $(document.getElementById("EndCourse")).show();
-            $(document.getElementById("ConfirmEndCourse")).hide();
-            $(document.getElementById("ConfirmEnd")).hide();
-            $(document.getElementById("CancelEndCourse")).hide();
-        }
-
-    </script>

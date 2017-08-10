@@ -19,14 +19,16 @@ namespace SAS_LMS.Models
         [Display(Name = "Start Date")]
         public DateTime StartDate { get; set; }
 
+        [Required]
+        [Display(Name = "End Date")]
+        public DateTime EndDate { get; set; }
+
         [Display(Name = "Participants")]
         public virtual ICollection<ApplicationUser> CourseParticipants { get; set; }
 
 
         [Display(Name = "Modules")]
         public virtual ICollection<Module> CourseModules { get; set; }
-
-        public bool EndCourse { get; set; }
 
     }
 }
