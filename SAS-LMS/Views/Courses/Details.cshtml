@@ -2,102 +2,175 @@
 
 
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <span class="glyphicon glyphicon-trash pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Course"
-              onclick="@("window.location.href='" + @Url.Action("Delete", "Courses", new { id = Model.Id }) + "'");"></span>
+@if (User.IsInRole("Teacher"))
+{
 
-        <span class="glyphicon glyphicon-pencil  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Course"
-              onclick="@("window.location.href='" + @Url.Action("Edit", "Courses", new { id = Model.Id }) + "'");"></span>
+    <span class="pull-right">@Html.ActionLink("Back", "Index", "Courses")</span>
+    <br />
+    <br />
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-trash pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Course"
+                  onclick="@("window.location.href='" + @Url.Action("Delete", "Courses", new { id = Model.Id }) + "'");"></span>
 
-        <span class="glyphicon glyphicon-Courses  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Home Page"
-              onclick="@("window.location.href='" + @Url.Action("Index", "Courses") + "'");"></span>
-
-        <h1 class="panel-title">Course</h1>
-    </div>
-    <div class="panel-body">
-        <table class="table">
-            <tr>
-                <td>Course :  @Model.Name</td>
-                <td>Start Date : @Model.StartDate.ToShortDateString()</td>
-            </tr>
-            <tr>
-                <td>Description : @Model.Description </td>
-                <td>End Date : @Model.EndDate.ToShortDateString()</td>
-            </tr>
-        </table>
-    </div>
-</div>
-
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <span class="pull-right">
-            @Html.ActionLink("Add a new Module", "Create", "Modules", new { id = Model.Id }, null)
-        </span>
-        <h1 class="panel-title">Course Modules</h1>
-    </div>
-    <div class="panel-body">
-        <table class="table table-striped">
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th></th>
-            </tr>
-
-            @if (Model.CourseModules.Count() == 0)
-            {
+            <span class="glyphicon glyphicon-pencil  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Course"
+                  onclick="@("window.location.href='" + @Url.Action("Edit", "Courses", new { id = Model.Id }) + "'");"></span>
+            <h1 class="panel-title">Course</h1>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <tr>
+                    <td>Course :  @Model.Name</td>
+                    <td>Start Date : @Model.StartDate.ToShortDateString()</td>
+                </tr>
+                <tr>
+                    <td>Description : @Model.Description </td>
+                    <td>End Date : @Model.EndDate.ToShortDateString()</td>
+                </tr>
                 <tr>
                     <td>
-                        Modules are yet to be planned
+                        <button type="button" class="btn btn-default btn-lg" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Student Information"
+                                onclick="@("window.location.href='" + @Url.Action("ViewStudent", "Courses", new { id = Model.Id }) + "'");">
+                            <span class="glyphicon glyphicon-user"></span>Manage Students
+                        </button>
                     </td>
                 </tr>
-            }
-            else
-            {
+            </table>
+        </div>
+    </div>
 
-                foreach (var item in Model.CourseModules)
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="pull-right">
+                @Html.ActionLink("Add a new Module", "Create", "Modules", new { id = Model.Id }, null)
+            </span>
+            <h1 class="panel-title">Course Modules</h1>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th></th>
+                </tr>
+
+                @if (Model.CourseModules.Count() == 0)
                 {
                     <tr>
-
                         <td>
-                            @Html.ActionLink(@item.Name, "Details", "Modules", new { id = item.Id }, "")
+                            Modules are yet to be planned
                         </td>
-
-                        <td>
-                            @item.Description
-                        </td>
-
-                        <td>
-                            @item.StartDate.ToShortDateString()
-                        </td>
-
-                        <td>
-                            @item.EndDate.ToShortDateString()
-                        </td>
-                        <td>
-
-                            <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Module"
-                                    onclick="@("window.location.href='" + @Url.Action("Delete", "Modules", new { id = item.Id }) + "'");">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-
-                            <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Module"
-                                    onclick="@("window.location.href='" + @Url.Action("Edit", "Modules", new { id = item.Id, courseId = Model.Id }) + "'");">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </button>
-
-                            @*<button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Show Activities"
-                                        onclick="@("window.location.href='" + @Url.Action("Details", "Modules", new { id = item.Id }) + "'");">
-                                    <span class="glyphicon glyphicon-folder-open"> </span>
-                                </button>*@
-
-                        </td>
-
                     </tr>
                 }
-            }
-        </table>
+                else
+                {
+
+                    foreach (var item in Model.CourseModules)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.ActionLink(@item.Name, "Details", "Modules", new { id = item.Id }, "")
+                            </td>
+
+                            <td>
+                                @item.Description
+                            </td>
+
+                            <td>
+                                @item.StartDate.ToShortDateString()
+                            </td>
+
+                            <td>
+                                @item.EndDate.ToShortDateString()
+                            </td>
+                            <td>
+
+                                <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Module"
+                                        onclick="@("window.location.href='" + @Url.Action("Delete", "Modules", new { id = item.Id }) + "'");">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+
+                                <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Module"
+                                        onclick="@("window.location.href='" + @Url.Action("Edit", "Modules", new { id = item.Id, courseId = Model.Id }) + "'");">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+
+                                @*<button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Show Activities"
+                                            onclick="@("window.location.href='" + @Url.Action("Details", "Modules", new { id = item.Id }) + "'");">
+                                        <span class="glyphicon glyphicon-folder-open"> </span>
+                                    </button>*@
+
+                            </td>
+
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
     </div>
-</div>
+}
+else
+{
+
+    <h2 id="Courseviewheading">Your Course Details</h2>
+    <table class="table">
+        <tr>
+            <td>Course :  @Model.Name</td>
+            <td>Start Date : @Model.StartDate.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td>Description : @Model.Description </td>
+            <td>End Date : @Model.EndDate.ToShortDateString()</td>
+        </tr>
+        <tr>
+            <td>
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-default btn-lg" onmouseover="this.style.cursor='pointer'"
+                        data-toggle="modal" data-target="#myModal">
+                    <span class="glyphicon glyphicon-user"></span>Course Participants
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Students Enrolled in your course (@Model.CourseParticipants.Count())</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                       <table class="table table-responsive">
+                                        @foreach (var student in Model.CourseParticipants)
+                                        {
+
+                                            <tr>
+                                                <td>@student.FullName</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                               
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <div class="well">Today's Schedule</div>
+
+    </div>
+
+}

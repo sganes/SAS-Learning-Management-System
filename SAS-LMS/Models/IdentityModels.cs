@@ -20,6 +20,9 @@ namespace SAS_LMS.Models
         [Display(Name = "Date of Enrollment")]
         public DateTime EnrollmentDate { get; set; }
 
+        [Display(Name = "Course Id")]
+        public int? CourseId { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -46,6 +49,6 @@ namespace SAS_LMS.Models
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
 
-
+       // public System.Data.Entity.DbSet<SAS_LMS.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

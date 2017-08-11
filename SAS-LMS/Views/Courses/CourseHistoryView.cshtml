@@ -1,8 +1,9 @@
 ﻿@model SAS_LMS.Models.Course
 
+
 <div>
     <span class="pull-right">@Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })</span>
-    <h2 id="Courseviewheading">Course Details</h2>
+    <h2 id="Courseviewheading">Course</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -37,77 +38,77 @@
             @Html.DisplayFor(model => model.EndDate)
         </dd>
     </dl>
-    <hr />
-    @if (Model.CourseModules.Count() == 0)
-    {
-        <table>
+</div>
+<hr />
+<br />
+<div>
+    <h2 id="Courseviewheading">Modules and Activities</h2>
+    <br />
+    <table class="table table-condensed table-responsive table-bordered" >
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Type</th>
+        </tr>
+        @if (Model.CourseModules.Count() == 0)
+        {
+
             <tr>
                 <td>
                     No Modules and Activities
                 </td>
             </tr>
-        </table>
-    }
-    else
-    {
 
-       foreach (var module in Model.CourseModules)
+        }
+        else
         {
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h1 class="panel-title">Module Name : @module.Name</h1>
-                </div>
-                <div class="panel-body">
-                    <table>
-                        <tr>
-                            <td>
-                                Module Description : @module.Description
-                            </td>
-                        </tr>
-                        <tr>
-                            <td> Start Date : @module.StartDate</td>
-                            <td> Start Date : @module.EndDate</td>
-                        </tr>
-                    </table>
-                    <br />
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Type</th>
-                        </tr>
-                        @if (module.ModuleActivities.Count() == 0)
+
+            foreach (var module in Model.CourseModules)
+                {
+
+                <tr id="Module">
+                    <td>@module.Name</td>
+                    <td>@module.Description</td>
+                    <td>@module.StartDate</td>
+                    <td>@module.EndDate</td>
+                    <td> </td>
+                </tr>
+                    if (module.ModuleActivities.Count() == 0)
                     {
 
-                            <tr>
-                                <td>
-                                    No Activities
-                                </td>
-                            </tr>
+                        <tr id="Activities">
+                            <td>
+                                No Activities
+                            </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
 
-                        }
-                        else
+                    }
+                    else
+                    {
+
+                        foreach (var activities in module.ModuleActivities)
                         {
-
-                            foreach (var activities in module.ModuleActivities)
-                            {
-                                <tr>
-                                    <td>@activities.Name</td>
-                                    <td>@activities.Description</td>
-                                    <td>@activities.StartDate</td>
-                                    <td>@activities.EndDate</td>
-                                    <td>@activities.ActivityType.Name</td>
-                                </tr>
-                            }
+                            <tr id="Activities">
+                                <td id="ActivitiesName">@activities.Name</td>
+                                <td>@activities.Description</td>
+                                <td>@activities.StartDate</td>
+                                <td>@activities.EndDate</td>
+                                <td>@activities.ActivityType.Name</td>
+                            </tr>
                         }
-                    </table>
-
-                </div>
-            </div>
+                    }
+                }
         }
-    }
 
+    </table>
 </div>
+
+
+

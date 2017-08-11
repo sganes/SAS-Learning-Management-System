@@ -86,7 +86,10 @@ namespace SAS_LMS.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+
         public string ConfirmPassword { get; set; }
+
+        public int? CourseId { get; set; }
     }
 
     public class ResetPasswordViewModel
