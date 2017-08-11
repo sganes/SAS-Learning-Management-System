@@ -1,6 +1,7 @@
 ﻿@model SAS_LMS.Models.Course
 
 
+
 <div>
     <span class="pull-right">@Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })</span>
     <h2 id="Courseviewheading">Course</h2>
@@ -46,11 +47,12 @@
     <br />
     <table class="table table-condensed table-responsive table-bordered" >
         <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Module </th>
+            <th>Activity</th>
+            <th>Type</th>
             <th>Start Date</th>
             <th>End Date</th>
-            <th>Type</th>
+           
         </tr>
         @if (Model.CourseModules.Count() == 0)
         {
@@ -70,23 +72,23 @@
                 {
 
                 <tr id="Module">
-                    <td>@module.Name</td>
-                    <td>@module.Description</td>
+
+                    <td>
+                        <a href="#" data-toggle="popover" data-content="@module.Description">@module.Name</a>
+                    </td>
+                    <td colspan="2"></td>
                     <td>@module.StartDate</td>
                     <td>@module.EndDate</td>
-                    <td> </td>
+                    
                 </tr>
                     if (module.ModuleActivities.Count() == 0)
                     {
 
                         <tr id="Activities">
-                            <td>
+                            <td></td>
+                            <td colspan="4">
                                 No Activities
                             </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
                         </tr>
 
                     }
@@ -96,11 +98,14 @@
                         foreach (var activities in module.ModuleActivities)
                         {
                             <tr id="Activities">
-                                <td id="ActivitiesName">@activities.Name</td>
-                                <td>@activities.Description</td>
+                                <td></td>
+                                <td id="ActivitiesName">
+                                    <a href="#" data-toggle="popover" data-content="@activities.Description">@activities.Name</a>
+                                </td>
+                                <td>@activities.ActivityType.Name</td>
                                 <td>@activities.StartDate</td>
                                 <td>@activities.EndDate</td>
-                                <td>@activities.ActivityType.Name</td>
+                              
                             </tr>
                         }
                     }
@@ -111,4 +116,18 @@
 </div>
 
 
+@section Scripts {
+    <script type="text/JavaScript">
 
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover();
+
+        $('[data-toggle="popover"]').on('mouseleave', function () {
+            $('[data-toggle="popover"]').popover('hide');
+        });
+    });
+
+   
+
+    </script>
+}
