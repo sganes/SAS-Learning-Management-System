@@ -114,8 +114,7 @@
 }
 else
 {
-
-    <h2 id="Courseviewheading">Your Course Details</h2>
+    <h3 id="Courseviewheading">Your Course Details</h3>
     <table class="table">
         <tr>
             <td>Course :  @Model.Name</td>
@@ -140,11 +139,11 @@ else
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Students Enrolled in your course (@Model.CourseParticipants.Count())</h4>
+                                <h4 class="modal-title">Students Enrolled in your course (Total Students : @Model.CourseParticipants.Count())</h4>
                             </div>
                             <div class="modal-body">
                                 <div>
-                                       <table class="table table-responsive">
+                                    <table class="table table-responsive">
                                         @foreach (var student in Model.CourseParticipants)
                                         {
 
@@ -157,7 +156,7 @@ else
 
                             </div>
                             <div class="modal-footer">
-                               
+
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -167,10 +166,59 @@ else
             </td>
         </tr>
     </table>
+    <hr />
+    <button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Complete Course Information"
+            onclick="@("window.location.href='" + @Url.Action("CourseHistoryView", "Courses", new { id = Model.Id }) + "'");">
+        Complete Course Schedule
+    </button>
+    <h3 id="Courseviewheading">Today's Schedule</h3>
+   <br />
 
-    <div>
-        <div class="well">Today's Schedule</div>
+    foreach (var module in Model.CourseModules)
+    {
 
-    </div>
+        if ((module.StartDate <= DateTime.Today) && (DateTime.Today <= module.EndDate))
+        {
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"></h1>
+                    Module : @module.Name<br />
+                    Description : @module.Description <br />
+                    Start: @module.StartDate
+                    End: @module.EndDate
+                </div>
+                <div class="panel-body">
+                    @foreach (var activity in module.ModuleActivities)
+                    {
+                        if ((activity.StartDate <= DateTime.Today) && (DateTime.Today <= activity.EndDate))
+                        {
+                            <table class="table">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        Activity : @activity.Name <br />
+                                        Description : @activity.Description <br />
+                                        Activity Type : @activity.ActivityType.Name <br />
+                                        Start :@activity.StartDate
+                                        End : @activity.EndDate <br />
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        }
+
+                    }
+
+                </div>
+            </div>
+        }
+
+    }
+
+
+
 
 }
