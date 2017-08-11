@@ -17,10 +17,14 @@ namespace SAS_LMS.Models
 
         [Required]
         [Display(Name = "Start Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
         [Required]
         [Display(Name = "End Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
         [Display(Name = "Participants")]
