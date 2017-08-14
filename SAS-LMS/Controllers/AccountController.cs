@@ -224,6 +224,16 @@ namespace SAS_LMS.Controllers
         }
 
 
+        //public ActionResult DeleteStudent(string id)
+        //{
+        //    ApplicationDbContext db = new ApplicationDbContext();
+        //    var user = db.Users.Find(id);
+        //    db.Users.Remove(user);
+        //    db.SaveChanges();
+        //    return RedirectToAction("ViewStudent", "Courses", new { id = user.CourseId });
+
+        //}
+
 
         //
         // GET: /Account/ConfirmEmail
