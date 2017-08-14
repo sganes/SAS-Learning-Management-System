@@ -18,8 +18,9 @@ namespace SAS_LMS.Models
         [Required]
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd M/yy h:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
+        // d/M/yy h:mm tt dd MMMM yyyy
 
         [Required]
         [Display(Name = "End Date")]
