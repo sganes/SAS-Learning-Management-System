@@ -20,7 +20,8 @@ namespace SAS_LMS.Controllers
             if (User.IsInRole("Teacher"))
             {
                 IQueryable<Course> courses;
-                courses = db.Courses.Where(c => c.EndDate > DateTime.Now);
+                courses = db.Courses.Where(c => c.EndDate > DateTime.Now)
+                                    .OrderBy(c => c.StartDate);
                 if (courses.Count() == 0)
                     ViewBag.Error = "Sorry!!! There are no upcoming courses";
                 return View(courses.ToList());

@@ -21,11 +21,11 @@
             <table class="table">
                 <tr>
                     <td>Course :  @Model.Name</td>
-                    <td>Start Date : @Model.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
+                    <td>Start Date : @Model.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
                 </tr>
                 <tr>
                     <td>Description : @Model.Description </td>
-                    <td>End&nbsp;: @Model.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
+                    <td>End&nbsp;: @Model.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
                 </tr>
                 <tr>
                     <td>
@@ -67,7 +67,7 @@
                 else
                 {
 
-                    foreach (var item in Model.CourseModules)
+                    foreach (var item in Model.CourseModules.OrderBy(m=>m.StartDate))
                     {
                         <tr>
 
@@ -80,11 +80,11 @@
                             </td>
 
                             <td>
-                                @item.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
+                                @item.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))
                             </td>
 
                             <td>
-                                @item.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
+                                @item.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))
                             </td>
                             <td>
 
@@ -118,11 +118,11 @@ else
     <table class="table">
         <tr>
             <td>Course @Model.Name</td>
-            <td>Start Date @Model.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
+            <td>Start Date @Model.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
         </tr>
         <tr>
             <td>Description @Model.Description </td>
-            <td>End Date @Model.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
+            <td>End Date @Model.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
         </tr>
         <tr>
             <td>
@@ -185,8 +185,8 @@ else
                     <h1 class="panel-title"></h1>
                     Module : @module.Name<br />
                     Description : @module.Description <br />
-                    Start: @module.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
-                    End: @module.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
+                    Start: @module.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))
+                    End: @module.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))
                 </div>
                 <div class="panel-body">
                     @foreach (var activity in module.ModuleActivities)
@@ -201,8 +201,8 @@ else
                                         Activity : @activity.Name <br />
                                         Description : @activity.Description <br />
                                         Activity Type : @activity.ActivityType.Name <br />
-                                        Start :@activity.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
-                                        End : @activity.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt")) <br />
+                                        Start :@activity.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))
+                                        End : @activity.EndDate.ToString(string.Format("dd MMM yyyy HH:mm")) <br />
                                     </td>
                                 </tr>
                             </table>

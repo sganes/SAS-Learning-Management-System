@@ -77,8 +77,8 @@
                         <a href="#" data-toggle="popover" data-content="@module.Description">@module.Name</a>
                     </td>
                     <td colspan="2"></td>
-                    <td>@module.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
-                    <td>@module.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
+                    <td>@module.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+                    <td>@module.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
                     
                 </tr>
                     if (module.ModuleActivities.Count() == 0)
@@ -103,8 +103,8 @@
                                     <a href="#" data-toggle="popover" data-content="@activities.Description">@activities.Name</a>
                                 </td>
                                 <td>@activities.ActivityType.Name</td>
-                                <td>@activities.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
-                                <td>@activities.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
+                                <td>@activities.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+                                <td>@activities.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
                               
                             </tr>
                         }

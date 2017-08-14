@@ -17,10 +17,10 @@
                         @Html.ActionLink(@course.Name, "CourseHistoryView", "Courses", new { id = course.Id }, "")
                         <br />
                         <span class="coursedescription">
-                            Start Date: @course.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
+                            Start Date: @course.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))
                             &emsp;
                             &emsp;
-                            End Date : @course.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
+                            End Date : @course.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))
                         </span>
                         <br />
 
