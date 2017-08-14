@@ -18,15 +18,13 @@ namespace SAS_LMS.Models
         [FutureDate(ErrorMessage = "Please enter a valid future date.")]
         [Required]
         [Display(Name = "Start Date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd M/yy h:mm tt}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
         // d/M/yy h:mm tt dd MMMM yyyy
 
         [Required]
         [Display(Name = "End Date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
         [Display(Name = "Participants")]

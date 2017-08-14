@@ -18,14 +18,11 @@
         <table class="table">
             <tr>
                 <td>Course :  @Model.Course.Name</td>
+                <td>Module Start Date : @Model.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
             </tr>
             <tr>
                 <td>Module :  @Model.Name</td>
-
-            </tr>
-            <tr>
-                <td>Module Start Date : @Model.StartDate.ToShortDateString()</td>
-                <td>Module End Date : @Model.EndDate.ToShortDateString()</td>
+                <td>Module End Date&nbsp; : @Model.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
             </tr>
         </table>
     </div>
@@ -74,11 +71,11 @@
                         </td>
 
                         <td>
-                            @item.StartDate.ToShortDateString()
+                            @item.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
                         </td>
 
                         <td>
-                            @item.EndDate.ToShortDateString()
+                            @item.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
                         </td>
 
                         <td>

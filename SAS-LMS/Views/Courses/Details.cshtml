@@ -21,11 +21,11 @@
             <table class="table">
                 <tr>
                     <td>Course :  @Model.Name</td>
-                    <td>Start Date : @Model.StartDate.ToShortDateString()</td>
+                    <td>Start Date : @Model.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
                 </tr>
                 <tr>
                     <td>Description : @Model.Description </td>
-                    <td>End Date : @Model.EndDate.ToShortDateString()</td>
+                    <td>End&nbsp;: @Model.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
                 </tr>
                 <tr>
                     <td>
@@ -80,11 +80,11 @@
                             </td>
 
                             <td>
-                                @item.StartDate.ToShortDateString()
+                                @item.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
                             </td>
 
                             <td>
-                                @item.EndDate.ToShortDateString()
+                                @item.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
                             </td>
                             <td>
 
@@ -118,11 +118,11 @@ else
     <table class="table">
         <tr>
             <td>Course @Model.Name</td>
-            <td>Start Date @Model.StartDate.ToShortDateString()</td>
+            <td>Start Date @Model.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
         </tr>
         <tr>
             <td>Description @Model.Description </td>
-            <td>End Date @Model.EndDate.ToShortDateString()</td>
+            <td>End Date @Model.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))</td>
         </tr>
         <tr>
             <td>
@@ -185,8 +185,8 @@ else
                     <h1 class="panel-title"></h1>
                     Module : @module.Name<br />
                     Description : @module.Description <br />
-                    Start: @module.StartDate
-                    End: @module.EndDate
+                    Start: @module.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
+                    End: @module.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
                 </div>
                 <div class="panel-body">
                     @foreach (var activity in module.ModuleActivities)
@@ -201,8 +201,8 @@ else
                                         Activity : @activity.Name <br />
                                         Description : @activity.Description <br />
                                         Activity Type : @activity.ActivityType.Name <br />
-                                        Start :@activity.StartDate
-                                        End : @activity.EndDate <br />
+                                        Start :@activity.StartDate.ToString(string.Format("dd MMM yyyy hh:mm tt"))
+                                        End : @activity.EndDate.ToString(string.Format("dd MMM yyyy hh:mm tt")) <br />
                                     </td>
                                 </tr>
                             </table>
