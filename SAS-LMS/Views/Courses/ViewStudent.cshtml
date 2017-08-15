@@ -66,24 +66,36 @@
                 <th>EnrollmentDate</th>
                 <th></th>
             </tr>
-            @foreach (var student in Model.CourseParticipants)
+
+            @if (Model.CourseParticipants.Count() == 0)
             {
-
                 <tr>
-                    <td>@student.FullName</td>
-                    <td>@student.Email</td>
-                    <td>@student.EnrollmentDate.ToString(string.Format("dd MMM yyyy"))</td>
-                    @*<td>
-                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Student"
-                                onclick="@("window.location.href='" + @Url.Action("DeleteStudent", "Account", new { id = student.UserName }) + "'");">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                    </td*@
-                    <td></td>
+                    <td>
+                        No students enrolled to this course yet
+                    </td>
                 </tr>
-
             }
-        </table>
+            else
+            {
+                foreach (var student in Model.CourseParticipants)
+                {
+
+                    <tr>
+                        <td>@student.FullName</td>
+                        <td>@student.Email</td>
+                        <td>@student.EnrollmentDate.ToString(string.Format("dd MMM yyyy"))</td>
+                        @*<td>
+                            <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Student"
+                                    onclick="@("window.location.href='" + @Url.Action("DeleteStudent", "Account", new { id = student.UserName }) + "'");">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td*@
+                        <td></td>
+                    </tr>
+
+                }
+            }
+            </table>
     </div>
 }
 else

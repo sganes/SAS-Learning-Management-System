@@ -20,18 +20,18 @@
         <div class="panel-body">
             <table class="table">
                 <tr>
-                    <td>Course :  @Model.Name</td>
-                    <td>Start Date : @Model.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+                    <td><b>Course:</b> @Model.Name</td>
+                    <td><b>Start Date:</b> @Model.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
                 </tr>
                 <tr>
-                    <td>Description : @Model.Description </td>
-                    <td>End&nbsp;: @Model.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+                    <td><b>Description:</b> @Model.Description </td>
+                    <td><b>End Date:</b> @Model.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
                 </tr>
                 <tr>
                     <td>
                         <button type="button" class="btn btn-default btn-lg" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Student Information"
                                 onclick="@("window.location.href='" + @Url.Action("ViewStudent", "Courses", new { id = Model.Id }) + "'");">
-                            <span class="glyphicon glyphicon-user"></span>Manage Students
+                            <span class="glyphicon glyphicon-user"></span>Enrolled Students
                         </button>
                     </td>
                 </tr>
@@ -119,12 +119,12 @@ else
     <h3 id="Courseviewheading">Your Course Details</h3>
     <table class="table">
         <tr>
-            <td>Course @Model.Name</td>
-            <td>Start Date @Model.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+            <td><b>Course</b>  @Model.Name</td>
+            <td><b>Start Date</b>  @Model.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
         </tr>
         <tr>
-            <td>Description @Model.Description </td>
-            <td>End Date @Model.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+            <td><b>Description</b>  @Model.Description </td>
+            <td><b>End Date</b>  @Model.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
         </tr>
         <tr>
             <td>
