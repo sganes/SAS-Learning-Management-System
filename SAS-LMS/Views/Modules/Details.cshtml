@@ -1,35 +1,40 @@
 ﻿@model SAS_LMS.Models.Module
 
+<span class="pull-right">
+    @Html.ActionLink("Back", "Details", "Courses", new { id = Model.CourseId }, null)
+</span>
+
+<br />
+<br />
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <span class="glyphicon glyphicon-Courses  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Home Page"
-              onclick="@("window.location.href='" + @Url.Action("Details", "Courses", new { id = Model.CourseId}) + "'");">
-        </span>
-
+        
         <h1 class="panel-title">Module Details</h1>
-       
+
     </div>
     <div class="panel-body">
 
         <table class="table">
             <tr>
-                <td>Name :  @Model.Name</td>
-                <td>Start Date : @Model.StartDate.ToShortDateString()</td>
+                <td>Course :  @Model.Course.Name</td>
+                <td>Module Start Date : @Model.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
             </tr>
             <tr>
-                <td>Description : @Model.Description </td>
-                <td>End Date : @Model.EndDate.ToShortDateString()</td>
+                <td>Module :  @Model.Name</td>
+                <td>Module End Date&nbsp; : @Model.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
             </tr>
-       </table>
-</div>
+        </table>
+    </div>
 </div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
+
         <span class="pull-right">
             @Html.ActionLink("Add a new Activity", "Create", "Activities", new { id = Model.Id }, null)
         </span>
+
         <h1 class="panel-title">Actvities for the Module</h1>
     </div>
     <div class="panel-body">
@@ -52,43 +57,47 @@
                     </td>
                 </tr>
             }
-
-            @foreach (var item in Model.ModuleActivities)
+            else
             {
-                <tr>
-                    <td>
-                        @item.Name
-                    </td>
+                foreach (var item in Model.ModuleActivities.OrderBy(a => a.StartDate))
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
 
-                    <td>
-                        @item.Description
-                    </td>
+                        <td>
+                            @item.Description
+                        </td>
 
-                    <td>
-                        @item.StartDate.ToShortDateString()
-                    </td>
+                        <td>
+                            @item.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))
+                        </td>
 
-                    <td>
-                        @item.EndDate.ToShortDateString()
-                    </td>
+                        <td>
+                            @item.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))
+                        </td>
 
-                    <td>
-                       @item.ActivityType.Name
-                    </td>
+                        <td>
+                            @item.ActivityType.Name
+                        </td>
 
-                    <td>
-                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Module"
-                                  onclick="@("window.location.href='" + @Url.Action("Delete", "Activities", new { id = item.Id }) + "'");">
-                            <span class="glyphicon glyphicon-trash" ></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Module"
-                                  onclick="@("window.location.href='" + @Url.Action("Edit", "Activities", new { id = item.Id, moduleId = Model.Id}) + "'");">
-                            <span class="glyphicon glyphicon-pencil" ></span>
-                        </button>
-                    </td>
+                        <td>
 
-                </tr>
+                            <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Module"
+                                    onclick="@("window.location.href='" + @Url.Action("Delete", "Activities", new { id = item.Id }) + "'");">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Module"
+                                    onclick="@("window.location.href='" + @Url.Action("Edit", "Activities", new { id = item.Id, moduleId = Model.Id }) + "'");">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+
+                        </td>
+
+                    </tr>
+                }
             }
         </table>
-        </div>
     </div>
+</div>

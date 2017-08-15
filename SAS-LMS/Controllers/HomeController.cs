@@ -7,7 +7,7 @@ namespace SAS_LMS.Controllers
 
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated && User.IsInRole("Teacher"))
+            if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Courses");
             }

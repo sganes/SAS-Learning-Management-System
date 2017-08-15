@@ -18,7 +18,11 @@ namespace SAS_LMS.Models
         public string FullName { get { return FName + " " + LName; } }
 
         [Display(Name = "Date of Enrollment")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime EnrollmentDate { get; set; }
+
+        [Display(Name = "Course Id")]
+        public int? CourseId { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -46,6 +50,6 @@ namespace SAS_LMS.Models
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
 
-
+        // public System.Data.Entity.DbSet<SAS_LMS.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

@@ -1,0 +1,136 @@
+﻿@model SAS_LMS.Models.Course
+
+<span class="pull-right">
+    @Html.ActionLink("Back", "Details", "Courses", new { id = Model.Id }, null)
+</span>
+<br />
+<hr />
+
+@if (User.IsInRole("Teacher"))
+{
+    <div>
+        <h3>Course Details</h3>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
+
+        </dl>
+
+    </div>
+
+    <hr />
+    <br />
+    <div>
+
+        <button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Student Information"
+                onclick="@("window.location.href='" + @Url.Action("EnrollStudent", "Account", new { courseId = Model.Id }) + "'");">
+            <span class="glyphicon glyphicon-user"></span>Enroll a Student
+        </button>
+    </div>
+    <div>
+        <h3>Enrolled Students</h3>
+        <br />
+        <table class="table table-responsive table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>EnrollmentDate</th>
+                <th></th>
+            </tr>
+            @foreach (var student in Model.CourseParticipants)
+            {
+
+                <tr>
+                    <td>@student.FullName</td>
+                    <td>@student.Email</td>
+                    <td>@student.EnrollmentDate.ToString(string.Format("dd MMM yyyy"))</td>
+                    @*<td>
+                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Student"
+                                onclick="@("window.location.href='" + @Url.Action("DeleteStudent", "Account", new { id = student.UserName }) + "'");">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td*@
+                    <td></td>
+                </tr>
+
+            }
+        </table>
+    </div>
+}
+else
+{
+    <div class="container">
+        <h2>Modal Example</h2>
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <h3>Enrolled Students</h3>
+                            <br />
+                            <table class="table table-bordered table-responsive">
+                                <tr>
+                                    <th>Name</th>
+                                </tr>
+                                @foreach (var student in Model.CourseParticipants)
+                                {
+
+                                    <tr>
+                                        <td>@student.FullName</td>
+                                    </tr>
+
+                                }
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+}
+

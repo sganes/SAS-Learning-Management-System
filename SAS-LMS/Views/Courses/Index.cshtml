@@ -6,7 +6,7 @@
         <span class="pull-right">
             @Html.ActionLink("Add a new Course", "Create")
             &nbsp;
-            @Html.ActionLink("Course History", "CourseHistory")
+            @Html.ActionLink("Finished Courses", "CourseHistory")
 
         </span>
           <h1 class="panel-title">Ongoing and Upcoming Courses</h1>
@@ -27,18 +27,13 @@
                             </div>
                         </div>
                         <div class="details">
-                            <span class="coursename">
-                                @course.Name
-                            </span>
 
+                            @Html.ActionLink(@course.Name, "Details", "Courses", new { id = course.Id },"")
 
                             <br />
                             <span class="coursedescription">
                                 @course.Description
                             </span>
-                            &emsp;
-                            <span class="glyphicon glyphicon-folder-open" onmouseover="this.style.cursor='pointer'"
-                                  onclick="@("window.location.href='" + @Url.Action("Details", "Courses", new { id = course.Id }) + "'");"></span>
                         </div>
                         <hr />
                     </li>

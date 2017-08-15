@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SAS_LMS.Models.Course>
+
+<span class="pull-right">@Html.ActionLink("Back", "Index", "Courses")</span>
+<br />
+<br />
+<div class="panel panel-default">
+    <div class="panel-heading CourseHeader">
+              <h1 class="panel-title">Course History</h1>
+    </div>
+    <div class="panel-body">
+
+        <div class="CouseCointainer">
+            <ul class="courses">
+                @foreach (var course in Model)
+                {
+                    <li>
+                        @Html.ActionLink(@course.Name, "CourseHistoryView", "Courses", new { id = course.Id }, "")
+                        <br />
+                        <span class="coursedescription">
+                            Start Date: @course.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))
+                            &emsp;
+                            &emsp;
+                            End Date : @course.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))
+                        </span>
+                        <br />
+
+                        <hr />
+                    </li>
+
+                }
+
+            </ul>
+        </div>
+    </div>
+</div>

@@ -29,6 +29,17 @@ namespace SAS_LMS.Migrations
                 }
             }
 
+            roleName = "Student";
+            if (!context.Roles.Any(r => r.Name == roleName))
+            {
+                var role = new IdentityRole { Name = roleName };
+                var result = roleManager.Create(role);
+                if (!result.Succeeded)
+                {
+                    throw new Exception(string.Join("\n", result.Errors));
+                }
+            }
+
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new UserManager<ApplicationUser>(userStore);
 
