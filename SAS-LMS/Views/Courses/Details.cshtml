@@ -119,12 +119,12 @@ else
     <h3 id="Courseviewheading">Your Course Details</h3>
     <table class="table">
         <tr>
-            <td><b>Course</b>  @Model.Name</td>
-            <td><b>Start Date</b>  @Model.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+            <td><b>Course:</b>  @Model.Name</td>
+            <td><b>Start Date:</b>  @Model.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
         </tr>
         <tr>
-            <td><b>Description</b>  @Model.Description </td>
-            <td><b>End Date</b>  @Model.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+            <td><b>Description:</b>  @Model.Description </td>
+            <td><b>End Date:</b>  @Model.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
         </tr>
         <tr>
             <td>
@@ -175,51 +175,57 @@ else
     </button>
     <h3 id="Courseviewheading">Today's Schedule</h3>
    <br />
-
+    var itemfound = false;
     foreach (var module in Model.CourseModules)
     {
 
-        if ((module.StartDate <= DateTime.Today) && (DateTime.Today <= module.EndDate))
+        if ((module.StartDate.Date <= DateTime.Today) && (DateTime.Today <= module.EndDate.Date))
         {
-
-            <div class="panel panel-default">
+            itemfound = true;
+             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h1 class="panel-title"></h1>
-                    Module : @module.Name<br />
-                    Description : @module.Description <br />
-                    Start: @module.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))
-                    End: @module.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))
+                    Module : @module.Name@*<br />
+                    Start: @module.StartDate.ToString(string.Format("dd MMM yyyy HH:mm")) <br />
+                    End: @module.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))<br />*@
                 </div>
                 <div class="panel-body">
-                    @foreach (var activity in module.ModuleActivities)
-                    {
-                        if ((activity.StartDate <= DateTime.Today) && (DateTime.Today <= activity.EndDate))
+                    <table class="table table-responsive table-striped">
+                        <tr>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Activity</th>
+                            <th>Activity Type</th>
+                        </tr>
+                        @foreach (var activity in module.ModuleActivities)
                         {
-                            <table class="table">
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        Activity : @activity.Name <br />
-                                        Description : @activity.Description <br />
-                                        Activity Type : @activity.ActivityType.Name <br />
-                                        Start :@activity.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))
-                                        End : @activity.EndDate.ToString(string.Format("dd MMM yyyy HH:mm")) <br />
-                                    </td>
-                                </tr>
-                            </table>
 
+                            if ((activity.StartDate.Date <= DateTime.Today) && (DateTime.Today <= activity.EndDate.Date))
+                            {
+
+                                <tr>
+                                    <td>@activity.StartDate.ToString(string.Format("HH:mm"))</td>
+                                    <td>@activity.EndDate.ToString(string.Format("HH:mm"))</td>
+                                    <td>@activity.Name</td>
+                                    <td>@activity.ActivityType.Name</td>
+                                </tr>
+
+
+
+                            }
 
                         }
-
-                    }
-
+                    </table>
                 </div>
             </div>
         }
 
     }
 
+    if (itemfound == false)
+    {
+        <div class="alert alert-info">No Modules/Activities planned for today</div>
+    }
 
 
 

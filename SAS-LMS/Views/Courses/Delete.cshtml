@@ -33,14 +33,23 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+        if (Model.CourseParticipants.Count == 0)
+        {
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">Please go back and delete the enrolled students before deleting the course</div>
+            <br />
             @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+        }
 
-
-        </div>
     }
 </div>

@@ -115,7 +115,7 @@ namespace SAS_LMS.Controllers
             Activity activity = db.Activities.Find(id);
             db.Activities.Remove(activity);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Modules", new { id = activity.ModuleId });
         }
 
         protected override void Dispose(bool disposing)

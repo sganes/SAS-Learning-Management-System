@@ -168,7 +168,6 @@ namespace SAS_LMS.Controllers
             db.Courses.Remove(course);
             db.SaveChanges();
             return RedirectToAction("Index");
-
         }
 
         // Courses/ViewStudent

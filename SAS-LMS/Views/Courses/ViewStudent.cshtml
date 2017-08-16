@@ -84,12 +84,13 @@
                         <td>@student.FullName</td>
                         <td>@student.Email</td>
                         <td>@student.EnrollmentDate.ToString(string.Format("dd MMM yyyy"))</td>
-                        @*<td>
+                        <td>
+                            
                             <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete the Student"
-                                    onclick="@("window.location.href='" + @Url.Action("DeleteStudent", "Account", new { id = student.UserName }) + "'");">
+                                    onclick="@("window.location.href='" + @Url.Action("DeleteStudent", "Account", new { id = student.Id}) + "'");">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
-                        </td*@
+                        </td>
                         <td></td>
                     </tr>
 
