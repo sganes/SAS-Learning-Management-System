@@ -5,6 +5,7 @@ namespace SAS_LMS.Models
 {
     public class FutureDate : ValidationAttribute
     {
+        public Course course { get; set; }
         public override bool IsValid(object value)
         {
             DateTime dateTime;

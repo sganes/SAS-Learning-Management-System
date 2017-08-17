@@ -16,6 +16,10 @@
             <span class="glyphicon glyphicon-pencil  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Course"
                   onclick="@("window.location.href='" + @Url.Action("Edit", "Courses", new { id = Model.Id }) + "'");"></span>
             <h1 class="panel-title">Course</h1>
+
+            <span class="glyphiconglyphicon glyphicon-file  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Course"
+                  onclick="@("window.location.href='" + @Url.Action("Create", "Documents") + "'");"></span>
+            <h1 class="panel-title">Course</h1>
         </div>
         <div class="panel-body">
             <table class="table">
