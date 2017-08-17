@@ -30,9 +30,11 @@ namespace SAS_LMS.Models
         [Display(Name = "Participants")]
         public virtual ICollection<ApplicationUser> CourseParticipants { get; set; }
 
-
         [Display(Name = "Modules")]
         public virtual ICollection<Module> CourseModules { get; set; }
+
+        [Display(Name = "Course Documents")]
+        public virtual ICollection<Document> CourseDocuments { get; set; }
 
     }
 }

@@ -50,7 +50,5 @@ namespace SAS_LMS.Models
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<Document> Documents { get; set; }
-
-        // public System.Data.Entity.DbSet<SAS_LMS.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

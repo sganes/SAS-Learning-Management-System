@@ -171,16 +171,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActivitiesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
-    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708170902068_Added Document Model.cs" />
-    <Compile Include="Migrations\201708170902068_Added Document Model.Designer.cs">
-      <DependentUpon>201708170902068_Added Document Model.cs</DependentUpon>
+    <Compile Include="Migrations\201708171407308_RebuildDatabase.cs" />
+    <Compile Include="Migrations\201708171407308_RebuildDatabase.Designer.cs">
+      <DependentUpon>201708171407308_RebuildDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -378,11 +377,7 @@
     <Content Include="Views\Students\Details.cshtml" />
     <Content Include="Views\Students\Edit.cshtml" />
     <Content Include="Views\Students\Index.cshtml" />
-    <Content Include="Views\Documents\Create.cshtml" />
-    <Content Include="Views\Documents\Delete.cshtml" />
-    <Content Include="Views\Documents\Details.cshtml" />
-    <Content Include="Views\Documents\Edit.cshtml" />
-    <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Views\Courses\UploadDocument.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -396,8 +391,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708170902068_Added Document Model.resx">
-      <DependentUpon>201708170902068_Added Document Model.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708171407308_RebuildDatabase.resx">
+      <DependentUpon>201708171407308_RebuildDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

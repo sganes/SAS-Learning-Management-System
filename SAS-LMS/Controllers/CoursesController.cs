@@ -2,8 +2,10 @@
 using SAS_LMS.Models;
 using System;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace SAS_LMS.Controllers
@@ -187,6 +189,51 @@ namespace SAS_LMS.Controllers
             return View(course);
         }
 
+
+        [HttpGet]
+        public ActionResult UploadDocument(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Course course = db.Courses.Find(id);
+            if (course == null)
+            {
+                return HttpNotFound();
+            }
+            return View(course);
+        }
+
+        [HttpPost]
+        public ActionResult UploadDocument(HttpPostedFileBase file, int? id, string DocDesc)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    Document document = new Models.Document();
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
+                    file.SaveAs(_path);
+                    ViewBag.Message = "File Uploaded Successfully!!";
+                    //document.DocPath = _path;
+                    document.Description = DocDesc;
+                    document.DocName = _FileName;
+                    document.CourseId = id;
+                    db.Documents.Add(document);
+                    db.SaveChanges();
+                }
+                Course course = db.Courses.Find(id);
+                return View(course);
+            }
+            catch
+            {
+                ViewBag.Message = "File upload failed!!";
+                Course course = db.Courses.Find(id);
+                return View(course);
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {
