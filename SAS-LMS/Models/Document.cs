@@ -13,6 +13,10 @@ namespace SAS_LMS.Models
         [Display(Name = "Document Description")]
         public string Description { get; set; }
 
+        [Required]
+        [Display(Name = "Document")]
+        public byte[] file { get; set; }
+
         [Display(Name = "Course Id")]
         public int? CourseId { get; set; }
 

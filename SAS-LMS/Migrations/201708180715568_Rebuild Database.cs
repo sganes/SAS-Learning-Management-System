@@ -68,6 +68,7 @@ namespace SAS_LMS.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         DocName = c.String(nullable: false),
                         Description = c.String(),
+                        file = c.Binary(nullable: false),
                         CourseId = c.Int(),
                         ModuleId = c.Int(),
                         ActivityId = c.Int(),

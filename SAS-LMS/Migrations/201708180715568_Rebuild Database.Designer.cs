@@ -13,7 +13,7 @@ namespace SAS_LMS.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201708171407308_RebuildDatabase"; }
+            get { return "201708180715568_Rebuild Database"; }
         }
         
         string IMigrationMetadata.Source
