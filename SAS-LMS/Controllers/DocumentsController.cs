@@ -36,6 +36,19 @@ namespace SAS_LMS.Controllers
             return View(document);
         }
 
+
+        // GET: Documents
+        public ActionResult StudentDocuments(int id)
+        {
+            IQueryable<Document> documents;
+            documents = db.Documents.Where(d => d.CourseId == id);
+            ViewBag.ID = id;
+            return View(documents.ToList());
+        }
+
+
+
+
         // GET: Documents/Create
         public ActionResult Create(int id)
         {
