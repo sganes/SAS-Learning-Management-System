@@ -177,9 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708171407308_RebuildDatabase.cs" />
-    <Compile Include="Migrations\201708171407308_RebuildDatabase.Designer.cs">
-      <DependentUpon>201708171407308_RebuildDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201708180716103_upload.cs" />
+    <Compile Include="Migrations\201708180716103_upload.Designer.cs">
+      <DependentUpon>201708180716103_upload.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -391,8 +391,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708171407308_RebuildDatabase.resx">
-      <DependentUpon>201708171407308_RebuildDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708180716103_upload.resx">
+      <DependentUpon>201708180716103_upload.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,5 +1,7 @@
 ﻿@model SAS_LMS.Models.Course
 
+<span class="pull-right">@Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })</span>
+
 <h3>Documents related to the Course : @Model.Name</h3>
 
 @using (Html.BeginForm("UploadDocument", "Courses", FormMethod.Post, new { enctype = "multipart/form-data" }))
