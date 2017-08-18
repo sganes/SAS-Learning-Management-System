@@ -31,5 +31,8 @@ namespace SAS_LMS.Models
 
         [Display(Name = "Activities")]
         public virtual ICollection<Activity> ModuleActivities { get; set; }
+
+        [Display(Name = "Module Documents")]
+        public virtual ICollection<Document> ModuleDocuments { get; set; }
     }
 }

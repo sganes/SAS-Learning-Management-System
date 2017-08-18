@@ -1,0 +1,54 @@
+﻿@model SAS_LMS.Models.Course
+
+<h3>Documents related to the Course : @Model.Name</h3>
+
+@using (Html.BeginForm("UploadDocument", "Courses", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <hr />
+    <div>
+        <dl class="dl-horizontal" >
+            
+            <dt>
+                @Html.Label("Upload File")
+            </dt>
+            <dd>
+                @Html.TextBox("file", "", new { type = "file", @class = "btn btn-default btn-file" })
+            </dd>
+            <dd>
+                <br />
+            </dd>
+            <dt>
+                @Html.Label("Description")
+            </dt>
+            <dd>
+                @Html.TextBox("DocDesc", " ")
+            </dd>
+            <dd>
+                <br />
+            </dd>
+             <dd>
+                <input type="submit" value="Upload" class="btn btn-default" />
+                @ViewBag.Message
+            </dd>
+         </dl>
+</div>
+    <hr />
+  
+}
+<table class="table">
+    <tr>
+        <th>Document Name</th>
+        <th>Document Description</th>
+    </tr>
+    @foreach (var document in Model.CourseDocuments)
+    {
+        <tr>
+            <td>@document.DocName</td>
+            <td>@document.Description</td>
+        </tr>
+    }
+</table>
+
+
+
+
