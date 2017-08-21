@@ -36,5 +36,10 @@ namespace SAS_LMS.Models
 
         [Display(Name = "Activity Id")]
         public int? ActivityId { get; set; }
+
+        [Display(Name = "End Date for Submission")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy HH:mm}", ApplyFormatInEditMode = true)]
+        public DateTime? SubmitBy { get; set; }
+
     }
 }
