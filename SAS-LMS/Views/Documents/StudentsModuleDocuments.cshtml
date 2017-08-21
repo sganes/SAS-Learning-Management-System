@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SAS_LMS.Models.Document>
+
+
+
+@*<button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Student Information"
+        onclick="@("window.location.href='" + @Url.Action("Create", "Documents", new { id = ViewBag.ID }) + "'");">
+    <span class="glyphicon glyphicon-upload"></span>Upload a New Document
+</button>*@
+
+<h2>Module documents</h2>
+
+<br />
+
+@*<p>
+    <b>Module Name  </b>
+</p>*@
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DocName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Download", "DownloadFile", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+
+</div>

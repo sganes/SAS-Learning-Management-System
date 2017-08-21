@@ -1,7 +1,9 @@
 namespace SAS_LMS.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -14,18 +16,60 @@ namespace SAS_LMS.Migrations
 
         protected override void Seed(SAS_LMS.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+            var roleName = "Teacher";
+            if (!context.Roles.Any(r => r.Name == roleName))
+            {
+                var role = new IdentityRole { Name = roleName };
+                var result = roleManager.Create(role);
+                if (!result.Succeeded)
+                {
+                    throw new Exception(string.Join("\n", result.Errors));
+                }
+            }
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            roleName = "Student";
+            if (!context.Roles.Any(r => r.Name == roleName))
+            {
+                var role = new IdentityRole { Name = roleName };
+                var result = roleManager.Create(role);
+                if (!result.Succeeded)
+                {
+                    throw new Exception(string.Join("\n", result.Errors));
+                }
+            }
+
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+            var email = "headteacher@lexicon.se";
+            if (!context.Users.Any(u => u.UserName == email))
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = email,
+                    Email = email,
+                    EnrollmentDate = DateTime.Now
+                };
+                var result = userManager.Create(user, "Admin123!");
+                if (!result.Succeeded)
+                {
+                    throw new Exception(string.Join("\n", result.Errors));
+                }
+            }
+
+            var adminUser = userManager.FindByName("headteacher@lexicon.se");
+            userManager.AddToRole(adminUser.Id, "Teacher");
+
+            context.ActivityTypes.AddOrUpdate(
+                p => p.Name,
+                  new ActivityType { Name = "e-Learning" },
+                  new ActivityType { Name = "Lecture" },
+                  new ActivityType { Name = "Exercise" },
+                  new ActivityType { Name = "Submission" }
+                );
+
         }
     }
 }

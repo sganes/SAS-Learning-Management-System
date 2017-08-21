@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SAS_LMS.Models
@@ -32,6 +33,9 @@ namespace SAS_LMS.Models
         public virtual Module Module { get; set; }
 
         public virtual ActivityType ActivityType { get; set; }
+
+        [Display(Name = "Activity Documents")]
+        public virtual ICollection<Document> ActivityDocuments { get; set; }
 
     }
 

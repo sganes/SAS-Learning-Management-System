@@ -13,7 +13,7 @@ namespace SAS_LMS.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Documents
+        // GET: Documents for Course
         public ActionResult CourseDocIndex(int id)
         {
             Course Courses;
@@ -21,12 +21,20 @@ namespace SAS_LMS.Controllers
             return View(Courses);
         }
 
-        // GET: Documents
+        // GET: Documents for Module
         public ActionResult ModuleDocIndex(int id)
         {
             Module Module;
             Module = db.Modules.Find(id);
             return View(Module);
+        }
+
+        // GET: Documents for Activities
+        public ActionResult ActivitiesDocIndex(int id)
+        {
+            Activity Activity;
+            Activity = db.Activities.Find(id);
+            return View(Activity);
         }
 
         // GET: Documents
@@ -54,8 +62,8 @@ namespace SAS_LMS.Controllers
         }
 
 
-        // GET: Documents
-        public ActionResult StudentDocuments(int id)
+        // GET: Course Documents for Students
+        public ActionResult StudentsCourseDocuments(int id)
         {
             IQueryable<Document> documents;
             documents = db.Documents.Where(d => d.CourseId == id);
@@ -63,7 +71,23 @@ namespace SAS_LMS.Controllers
             return View(documents.ToList());
         }
 
+        // GET: Module Documents for Students
+        public ActionResult StudentsModuleDocuments(int id)
+        {
+            IQueryable<Document> documents;
+            documents = db.Documents.Where(d => d.ModuleId == id);
+            ViewBag.ID = id;
+            return View(documents.ToList());
+        }
 
+        // GET: Activity Documents for Students
+        public ActionResult StudentsActivityDocuments(int id)
+        {
+            IQueryable<Document> documents;
+            documents = db.Documents.Where(d => d.ActivityId == id);
+            ViewBag.ID = id;
+            return View(documents.ToList());
+        }
 
 
         // GET: Documents/Create/Course
@@ -149,6 +173,49 @@ namespace SAS_LMS.Controllers
 
         }
 
+        // GET: Documents/Create/Activity
+        public ActionResult ActivityDocCreate(int id)
+        {
+            Activity Activity;
+            Activity = db.Activities.Find(id);
+            ViewBag.ActivityName = Activity.Name;
+            ViewBag.ID = id;
+            ViewBag.ActivityType = Activity.ActivityType.Name;
+            return View();
+        }
+
+        // POST: Documents/Create/Activity
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ActivityDocCreate(string DocName, string Description, int id, HttpPostedFileBase file, DateTime? SubmitBy)
+        {
+            Document document = new Document();
+            if (Request.Files != null && Request.Files.Count == 1)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    var content = new byte[file.ContentLength];
+                    file.InputStream.Read(content, 0, file.ContentLength);
+                    document.file = content;
+                    string extension = Path.GetExtension(file.FileName);
+                    document.ActivityId = id;
+                    document.DocName = DocName + extension;
+                    document.Description = Description;
+                    document.CreatedDate = DateTime.Now;
+                    document.CreatedBy = User.Identity.Name;
+                    document.SubmitBy = SubmitBy;
+                    db.Documents.Add(document);
+                    db.SaveChanges();
+                    return RedirectToAction("ActivitiesDocIndex", new { id = id });
+                }
+            }
+
+            return RedirectToAction("ActivityDocCreate");
+
+        }
+
         // GET: Documents/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -207,6 +274,8 @@ namespace SAS_LMS.Controllers
             return RedirectToAction("CourseDocIndex", new { id = DocCourseId });
         }
 
+        //Delect the Module Documents
+
         // GET: Documents/Delete/5
         public ActionResult DeleteModuleDoc(int? id)
         {
@@ -222,6 +291,7 @@ namespace SAS_LMS.Controllers
             return View(document);
         }
 
+
         // POST: Documents/Delete/5
         [HttpPost, ActionName("DeleteModuleDoc")]
         [ValidateAntiForgeryToken]
@@ -235,7 +305,34 @@ namespace SAS_LMS.Controllers
         }
 
 
+        //Delect the Activities Documents
 
+        // GET: Documents/Delete/5
+        public ActionResult DeleteActivityDoc(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Document document = db.Documents.Find(id);
+            if (document == null)
+            {
+                return HttpNotFound();
+            }
+            return View(document);
+        }
+
+        // POST: Documents/Delete/5
+        [HttpPost, ActionName("DeleteActivityDoc")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteActivityDocConfirmed(int id)
+        {
+            Document document = db.Documents.Find(id);
+            var DocActivityId = document.ActivityId;
+            db.Documents.Remove(document);
+            db.SaveChanges();
+            return RedirectToAction("ActivitiesDocIndex", new { id = DocActivityId });
+        }
 
 
 

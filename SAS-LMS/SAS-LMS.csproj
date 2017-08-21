@@ -351,6 +351,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
     <Content Include="Views\Courses\Details.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
@@ -375,6 +376,7 @@
     <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Courses\UploadDocument.cshtml" />
     <Content Include="Views\Documents\Create.cshtml" />
+    <Content Include="Views\Documents\Delete.cshtml" />
     <Content Include="Views\Documents\Details.cshtml" />
     <Content Include="Views\Documents\Edit.cshtml" />
     <Content Include="Views\Documents\Index.cshtml" />
@@ -384,6 +386,9 @@
     <Content Include="Views\Courses\Delete.cshtml" />
     <Content Include="Views\Documents\Delete.cshtml" />
     <Content Include="Views\Documents\DeleteModuleDoc.cshtml" />
+    <Content Include="Views\Documents\ActivitiesDocIndex.cshtml" />
+    <Content Include="Views\Documents\ActivityDocCreate.cshtml" />
+    <Content Include="Views\Documents\DeleteActivityDoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

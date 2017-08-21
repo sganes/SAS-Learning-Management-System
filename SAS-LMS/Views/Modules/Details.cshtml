@@ -88,9 +88,15 @@
                                     onclick="@("window.location.href='" + @Url.Action("Delete", "Activities", new { id = item.Id }) + "'");">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
+
                             <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Edit the Module"
                                     onclick="@("window.location.href='" + @Url.Action("Edit", "Activities", new { id = item.Id, moduleId = Model.Id }) + "'");">
                                 <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+
+                            <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Manage Module Documents"
+                                    onclick="@("window.location.href='" + @Url.Action("ActivitiesDocIndex", "Documents", new { id = item.Id}) + "'");">
+                                <span class="glyphicon glyphicon-file"></span>
                             </button>
 
                         </td>
