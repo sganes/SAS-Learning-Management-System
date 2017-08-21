@@ -171,7 +171,7 @@ else
             </td>
             <td>
                 <button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Course Documents List"
-                        onclick="@("window.location.href='" + @Url.Action("StudentDocuments", "Documents", new { id = Model.Id }) + "'");">
+                        onclick="@("window.location.href='" + @Url.Action("StudentsCourseDocuments", "Documents", new { id = Model.Id }) + "'");">
                     Course Documents
                 </button>
             </td>
