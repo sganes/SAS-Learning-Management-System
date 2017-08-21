@@ -7,38 +7,36 @@
     <span class="glyphicon glyphicon-upload"></span>Upload a New Document
 </button>*@
 
-<h2>Course documents</h2>
+                      <div>
+                          <span class="pull-right">@Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })</span>
+                          <h2 id="Courseviewheading">Course documents</h2>
+                          <br />
+                          <table class="table">
+                              <tr>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.DocName)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.Description)
+                                  </th>
+                                  <th></th>
+                              </tr>
 
-<br />
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DocName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
+                              @foreach (var item in Model)
+                              {
+                              <tr>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.DocName)
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.Description)
+                                  </td>
+                                  <td>
+                                      @Html.ActionLink("Download", "DownloadFile", new { id = item.Id })
+                                  </td>
+                              </tr>
+                              }
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DocName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Download", "DownloadFile", new { id = item.Id })
-            </td>
-        </tr>
-    }
+                          </table>
+                      </div>
 
-</table>
-
-<div>
-    @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
-
-</div>
