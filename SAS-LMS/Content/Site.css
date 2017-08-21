@@ -110,8 +110,9 @@ textarea {
     background-color :bisque;
 }
 
-#Activities{
-    background-color:aliceblue;
+#Activities {
+    background-color: aliceblue;
+}
 
 /*Modifying the default classes*/
 /*.navbar-inverse .navbar-brand {
@@ -129,7 +130,7 @@ textarea {
   background-color: red;
 }*/
   
- .navbar-inverse .navbar-nav > li > a {
+ .navbar-inverse .navbar-nav > li > a{
   color:  #8eff96;
 }
 
@@ -144,14 +145,17 @@ a:focus {
   text-decoration: underline;
 }
 
+
 .table thead > tr > th,
 .table tbody > tr > th,
 .table tfoot > tr > th,
 .table thead > tr > td,
 .table tbody > tr > td,
 .table tfoot > tr > td {
-   border-top: none
+
+  border-top: none;
 }
+
 
 img {
   padding:5px;

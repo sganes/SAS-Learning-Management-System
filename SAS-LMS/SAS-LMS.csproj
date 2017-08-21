@@ -178,9 +178,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708180715568_Rebuild Database.cs" />
-    <Compile Include="Migrations\201708180715568_Rebuild Database.Designer.cs">
-      <DependentUpon>201708180715568_Rebuild Database.cs</DependentUpon>
+    <Compile Include="Migrations\201708181404125_Rebuild Database again.cs" />
+    <Compile Include="Migrations\201708181404125_Rebuild Database again.Designer.cs">
+      <DependentUpon>201708181404125_Rebuild Database again.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708210736402_Updated Document model with createdon and createdby.cs" />
+    <Compile Include="Migrations\201708210736402_Updated Document model with createdon and createdby.Designer.cs">
+      <DependentUpon>201708210736402_Updated Document model with createdon and createdby.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -384,6 +388,7 @@
     <Content Include="Views\Documents\Details.cshtml" />
     <Content Include="Views\Documents\Edit.cshtml" />
     <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Views\Documents\CourseDocIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -397,8 +402,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708180715568_Rebuild Database.resx">
-      <DependentUpon>201708180715568_Rebuild Database.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708181404125_Rebuild Database again.resx">
+      <DependentUpon>201708181404125_Rebuild Database again.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708210736402_Updated Document model with createdon and createdby.resx">
+      <DependentUpon>201708210736402_Updated Document model with createdon and createdby.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

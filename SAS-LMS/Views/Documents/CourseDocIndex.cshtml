@@ -1,0 +1,79 @@
+﻿@model SAS_LMS.Models.Course
+
+
+
+
+<span class="pull-right" >@Html.ActionLink("Back","Details","Courses", new { id = Model.Id},"")</span>
+<br />
+<br />
+<div>
+    <button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Upload Document"
+            onclick="@("window.location.href='" + @Url.Action("Create", "Documents", new { id = Model.Id}) + "'");">
+        <span class="glyphicon glyphicon-upload"></span>Upload a New Document
+    </button>
+    <h3 id="Courseviewheading">
+      
+            @Html.DisplayNameFor(model => model.Name) :
+            @Html.DisplayFor(model => model.Name)
+    </h3>  
+</div>
+<br />
+<br />
+    <div>
+        <table class="table table-responsive table-hover">
+            <tr>
+                <th>Document Name</th>
+                <th>Document Description</th>
+                <th>Created on</th>
+                <th>Created by</th>
+                <th></th>
+               
+            </tr>
+            @foreach (var item in Model.CourseDocuments)
+            {
+                <tr>
+                    <td>
+                        @item.DocName
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.CreatedDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.CreatedBy
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Download Document"
+                                onclick="@("window.location.href='" + @Url.Action("DownloadFile", "Documents", new { id = item.Id }) + "'");">
+                            <span class="glyphicon glyphicon-download"></span>
+                        </button>
+
+                        @*@Html.ActionLink("Download", "DownloadFile", new { id = item.Id })*@
+                    </td>
+                    <td></td>
+                </tr>
+            }
+            @*@foreach (var module in Model.CourseModules)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@module.Name</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    foreach (var ModuleDocuments in module.ModuleDocuments)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@ModuleDocuments.DocName</td>
+                            <td>@ModuleDocuments.Description</td>
+                        </tr>
+                    }
+
+                }*@
+        </table>
+    </div>

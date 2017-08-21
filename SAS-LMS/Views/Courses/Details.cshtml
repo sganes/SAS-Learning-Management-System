@@ -18,7 +18,7 @@
            
 
             <span class="glyphicon glyphicon-file  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Upload a Course Document"
-                  onclick="@("window.location.href='" + @Url.Action("Index", "Documents",new { id = Model.Id }) + "'");"></span>
+                  onclick="@("window.location.href='" + @Url.Action("CourseDocIndex", "Documents",new { id = Model.Id }) + "'");"></span>
             <h1 class="panel-title">Course</h1>
         </div>
         <div class="panel-body">
@@ -38,6 +38,7 @@
                             <span class="glyphicon glyphicon-user"></span>Enrolled Students
                         </button>
                     </td>
+                    <td></td>
                 </tr>
             </table>
         </div>

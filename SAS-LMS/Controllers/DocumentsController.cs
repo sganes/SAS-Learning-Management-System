@@ -1,4 +1,5 @@
 ﻿using SAS_LMS.Models;
+using System;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,15 @@ namespace SAS_LMS.Controllers
     public class DocumentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        // GET: Documents
+        public ActionResult CourseDocIndex(int id)
+        {
+            Course Courses;
+            Courses = db.Courses.Find(id);
+            return View(Courses);
+        }
+
 
         // GET: Documents
         public ActionResult Index(int id)
@@ -42,6 +52,7 @@ namespace SAS_LMS.Controllers
             Course course;
             course = db.Courses.Find(id);
             ViewBag.CourseName = course.Name;
+            ViewBag.ID = id;
             return View();
         }
 
@@ -64,9 +75,11 @@ namespace SAS_LMS.Controllers
                     document.CourseId = id;
                     document.DocName = DocName + extension;
                     document.Description = Description;
+                    document.CreatedDate = DateTime.Now;
+                    document.CreatedBy = User.Identity.Name;
                     db.Documents.Add(document);
                     db.SaveChanges();
-                    return RedirectToAction("Index", new { id = id });
+                    return RedirectToAction("CourseDocIndex", new { id = id });
                 }
             }
 

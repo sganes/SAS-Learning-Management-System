@@ -2,8 +2,6 @@
 
 <span class="pull-right">@Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })</span>
 
-<h3>Documents related to the Course : @Model.Name</h3>
-
 @using (Html.BeginForm("UploadDocument", "Courses", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <hr />
@@ -37,19 +35,24 @@
     <hr />
   
 }
-<table class="table">
+
+@*<table class="table">
     <tr>
+     
         <th>Document Name</th>
         <th>Document Description</th>
     </tr>
     @foreach (var document in Model.CourseDocuments)
     {
         <tr>
+            <td></td>
+            <td></td>
             <td>@document.DocName</td>
             <td>@document.Description</td>
         </tr>
     }
-</table>
+   
+</table>*@
 
 
 

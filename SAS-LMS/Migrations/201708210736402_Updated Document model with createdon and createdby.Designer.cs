@@ -7,13 +7,13 @@ namespace SAS_LMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RebuildDatabase : IMigrationMetadata
+    public sealed partial class UpdatedDocumentmodelwithcreatedonandcreatedby : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RebuildDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedDocumentmodelwithcreatedonandcreatedby));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708180715568_Rebuild Database"; }
+            get { return "201708210736402_Updated Document model with createdon and createdby"; }
         }
         
         string IMigrationMetadata.Source

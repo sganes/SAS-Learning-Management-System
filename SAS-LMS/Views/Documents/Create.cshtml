@@ -42,5 +42,9 @@
 }
 
 <div>
-    @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+    @Html.ActionLink("Back", "CourseDocIndex", new { id = ViewBag.ID })
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
