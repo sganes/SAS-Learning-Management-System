@@ -178,14 +178,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708181404125_Rebuild Database again.cs" />
-    <Compile Include="Migrations\201708181404125_Rebuild Database again.Designer.cs">
-      <DependentUpon>201708181404125_Rebuild Database again.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708210736402_Updated Document model with createdon and createdby.cs" />
-    <Compile Include="Migrations\201708210736402_Updated Document model with createdon and createdby.Designer.cs">
-      <DependentUpon>201708210736402_Updated Document model with createdon and createdby.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -400,14 +392,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708181404125_Rebuild Database again.resx">
-      <DependentUpon>201708181404125_Rebuild Database again.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708210736402_Updated Document model with createdon and createdby.resx">
-      <DependentUpon>201708210736402_Updated Document model with createdon and createdby.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
