@@ -74,7 +74,6 @@
                 <tr id="Module">
 
                     <td>
-                        @*<a href="#" data-toggle="popover" data-content="@module.Description">@module.Name</a>*@
                         @Html.ActionLink(@module.Name, "StudentsModuleDocuments", "Documents", new { id = module.Id }, "")
                     </td>
                     <td colspan="2"></td>
@@ -101,7 +100,6 @@
                             <tr id="Activities">
                                 <td></td>
                                 <td id="ActivitiesName">
-                                    @*<a href="#" data-toggle="popover" data-content="@activities.Description">@activities.Name</a>*@
                                     @Html.ActionLink(@activities.Name, "StudentsActivityDocuments", "Documents", new { id = activities.Id }, "")
                                 </td>
                                 <td>@activities.ActivityType.Name</td>
