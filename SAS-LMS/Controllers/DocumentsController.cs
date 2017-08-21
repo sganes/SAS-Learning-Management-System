@@ -21,6 +21,13 @@ namespace SAS_LMS.Controllers
             return View(Courses);
         }
 
+        // GET: Documents
+        public ActionResult ModuleDocIndex(int id)
+        {
+            Module Module;
+            Module = db.Modules.Find(id);
+            return View(Module);
+        }
 
         // GET: Documents
         public ActionResult Index(int id)
@@ -59,7 +66,7 @@ namespace SAS_LMS.Controllers
 
 
 
-        // GET: Documents/Create
+        // GET: Documents/Create/Course
         public ActionResult Create(int id)
         {
             Course course;
@@ -69,7 +76,7 @@ namespace SAS_LMS.Controllers
             return View();
         }
 
-        // POST: Documents/Create
+        // POST: Documents/Create/Course
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -97,6 +104,48 @@ namespace SAS_LMS.Controllers
             }
 
             return RedirectToAction("Create");
+
+        }
+
+
+        // GET: Documents/Create/Module
+        public ActionResult ModuleDocCreate(int id)
+        {
+            Module Module;
+            Module = db.Modules.Find(id);
+            ViewBag.ModuleName = Module.Name;
+            ViewBag.ID = id;
+            return View();
+        }
+
+        // POST: Documents/Create/Course
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ModuleDocCreate(string DocName, string Description, int id, HttpPostedFileBase file)
+        {
+            Document document = new Document();
+            if (Request.Files != null && Request.Files.Count == 1)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    var content = new byte[file.ContentLength];
+                    file.InputStream.Read(content, 0, file.ContentLength);
+                    document.file = content;
+                    string extension = Path.GetExtension(file.FileName);
+                    document.ModuleId = id;
+                    document.DocName = DocName + extension;
+                    document.Description = Description;
+                    document.CreatedDate = DateTime.Now;
+                    document.CreatedBy = User.Identity.Name;
+                    db.Documents.Add(document);
+                    db.SaveChanges();
+                    return RedirectToAction("ModuleDocIndex", new { id = id });
+                }
+            }
+
+            return RedirectToAction("ModuleDocCreate");
 
         }
 
@@ -152,10 +201,45 @@ namespace SAS_LMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Document document = db.Documents.Find(id);
+            var DocCourseId = document.CourseId;
             db.Documents.Remove(document);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("CourseDocIndex", new { id = DocCourseId });
         }
+
+        // GET: Documents/Delete/5
+        public ActionResult DeleteModuleDoc(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Document document = db.Documents.Find(id);
+            if (document == null)
+            {
+                return HttpNotFound();
+            }
+            return View(document);
+        }
+
+        // POST: Documents/Delete/5
+        [HttpPost, ActionName("DeleteModuleDoc")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteModuleDocConfirmed(int id)
+        {
+            Document document = db.Documents.Find(id);
+            var DocModuleId = document.ModuleId;
+            db.Documents.Remove(document);
+            db.SaveChanges();
+            return RedirectToAction("ModuleDocIndex", new { id = DocModuleId });
+        }
+
+
+
+
+
+
+
 
         public FileResult DownloadFile(int id)
         {

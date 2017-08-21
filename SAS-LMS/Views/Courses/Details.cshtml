@@ -17,7 +17,7 @@
                   onclick="@("window.location.href='" + @Url.Action("Edit", "Courses", new { id = Model.Id }) + "'");"></span>
            
 
-            <span class="glyphicon glyphicon-file  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Upload a Course Document"
+            <span class="glyphicon glyphicon-file  pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Manage Course Document"
                   onclick="@("window.location.href='" + @Url.Action("CourseDocIndex", "Documents",new { id = Model.Id }) + "'");"></span>
             <h1 class="panel-title">Course</h1>
         </div>
@@ -105,11 +105,10 @@
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
 
-                                @*<button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Show Activities"
-                                            onclick="@("window.location.href='" + @Url.Action("Details", "Modules", new { id = item.Id }) + "'");">
-                                        <span class="glyphicon glyphicon-folder-open"> </span>
-                                    </button>*@
-
+                                <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Manage Module Documents"
+                                        onclick="@("window.location.href='" + @Url.Action("ModuleDocIndex", "Documents", new { id = item.Id}) + "'");">
+                                    <span class="glyphicon glyphicon-file"></span>
+                                </button>
                             </td>
 
                         </tr>
