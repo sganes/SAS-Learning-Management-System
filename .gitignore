@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /SAS-LMS/UploadedFiles
+/SAS-LMS/Migrations/201708180949364_download.cs
