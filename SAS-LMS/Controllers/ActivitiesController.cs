@@ -113,6 +113,12 @@ namespace SAS_LMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Activity activity = db.Activities.Find(id);
+            IQueryable<Document> Documents;
+            Documents = db.Documents.Where(d => d.ActivityId == id);
+            foreach (var item in Documents)
+            {
+                db.Documents.Remove(item);
+            }
             db.Activities.Remove(activity);
             db.SaveChanges();
             return RedirectToAction("Details", "Modules", new { id = activity.ModuleId });
