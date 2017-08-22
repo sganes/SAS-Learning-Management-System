@@ -178,6 +178,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708211424583_Docum.cs" />
+    <Compile Include="Migrations\201708211424583_Docum.Designer.cs">
+      <DependentUpon>201708211424583_Docum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -376,7 +380,6 @@
     <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Courses\UploadDocument.cshtml" />
     <Content Include="Views\Documents\Create.cshtml" />
-    <Content Include="Views\Documents\Delete.cshtml" />
     <Content Include="Views\Documents\Details.cshtml" />
     <Content Include="Views\Documents\Edit.cshtml" />
     <Content Include="Views\Documents\Index.cshtml" />
@@ -384,11 +387,14 @@
     <Content Include="Views\Documents\ModuleDocIndex.cshtml" />
     <Content Include="Views\Documents\ModuleDocCreate.cshtml" />
     <Content Include="Views\Courses\Delete.cshtml" />
-    <Content Include="Views\Documents\Delete.cshtml" />
     <Content Include="Views\Documents\DeleteModuleDoc.cshtml" />
     <Content Include="Views\Documents\ActivitiesDocIndex.cshtml" />
     <Content Include="Views\Documents\ActivityDocCreate.cshtml" />
     <Content Include="Views\Documents\DeleteActivityDoc.cshtml" />
+    <Content Include="Views\Documents\StudentsActivityDocuments.cshtml" />
+    <Content Include="Views\Documents\StudentsCourseDocuments.cshtml" />
+    <Content Include="Views\Documents\StudentsModuleDocuments.cshtml" />
+    <Content Include="Views\Documents\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -400,6 +406,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708211424583_Docum.resx">
+      <DependentUpon>201708211424583_Docum.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
