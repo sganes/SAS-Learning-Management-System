@@ -75,7 +75,7 @@
                 <tr id="Module">
 
                     <td>
-                        @Html.ActionLink(@module.Name, "StudentsModuleDocuments", "Documents", new { id = module.Id }, new { Class = "action add", title="Module Information"})
+                        @Html.ActionLink(@module.Name, "StudentsModuleDocuments", "Documents", new { id = module.Id }, new { Class = "action add", title="Module Documents"})
                     </td>
                     <td colspan="2"></td>
                     <td>@module.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
@@ -102,7 +102,7 @@
                         <tr id="Activities">
                             <td></td>
                             <td id="ActivitiesName">
-                                @Html.ActionLink(@activities.Name, "StudentsActivityDocuments", "Documents", new { id = activities.Id }, new { Class = "action add", title = "Activity Information" })
+                                @Html.ActionLink(@activities.Name, "StudentsActivityDocuments", "Documents", new { id = activities.Id }, new { Class = "action add", title = "Activity Documents" })
                             </td>
                             <td>@activities.ActivityType.Name</td>
                             <td>@activities.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
