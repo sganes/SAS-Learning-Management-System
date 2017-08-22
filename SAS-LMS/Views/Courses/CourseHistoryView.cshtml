@@ -52,6 +52,7 @@
             <th>Type</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Upload Submission</th>
            
         </tr>
         @if (Model.CourseModules.Count() == 0)
@@ -79,6 +80,7 @@
                     <td colspan="2"></td>
                     <td>@module.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
                     <td>@module.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+                    <td></td>
                     
                 </tr>
                     if (module.ModuleActivities.Count() == 0)
@@ -91,25 +93,33 @@
                             </td>
                         </tr>
 
-                    }
-                    else
-                    {
+                }
+                else
+                {
 
-                        foreach (var activities in module.ModuleActivities)
-                        {
-                            <tr id="Activities">
+                    foreach (var activities in module.ModuleActivities)
+                    {
+                        <tr id="Activities">
+                            <td></td>
+                            <td id="ActivitiesName">
+                                @Html.ActionLink(@activities.Name, "StudentsActivityDocuments", "Documents", new { id = activities.Id }, new { Class = "action add", title = "Activity Information" })
+                            </td>
+                            <td>@activities.ActivityType.Name</td>
+                            <td>@activities.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+                            <td>@activities.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+                            @if (activities.ActivityType.Name == "Submission")
+                            {
+                                <td>@Html.ActionLink("Upload", "UploadFile", new { id = activities.Id })</td>
+                            }
+                            else
+                            {
                                 <td></td>
-                                <td id="ActivitiesName">
-                                    @Html.ActionLink(@activities.Name, "StudentsActivityDocuments", "Documents", new { id = activities.Id }, new { Class = "action add", title = "Activity Information" })
-                                </td>
-                                <td>@activities.ActivityType.Name</td>
-                                <td>@activities.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
-                                <td>@activities.EndDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
-                              
-                            </tr>
-                        }
+                            }
+
+                        </tr>
                     }
                 }
+            }
         }
 
     </table>
