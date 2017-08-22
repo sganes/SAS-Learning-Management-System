@@ -39,9 +39,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <th>
+            <td>
                 @Html.DisplayFor(modelItem => item.CreatedBy)
-            </th>
+            </td>
             <td>
                 @Html.ActionLink("Download", "DownloadFile", new { id = item.Id })
             </td>
