@@ -109,10 +109,23 @@ namespace SAS_LMS.Controllers
         {
             Module module = db.Modules.Find(id);
             IQueryable<Document> Documents;
+            IQueryable<Activity> Activities;
+            Activities = db.Activities.Where(a => a.ModuleId == id);
+            foreach (var activity in Activities)
+            {
+                Documents = db.Documents.Where(d => d.ActivityId == activity.Id);
+                foreach (var item in Documents)
+                {
+                    item.ActivityId = null;
+                    db.Entry(item).State = EntityState.Modified;
+                }
+                db.Activities.Remove(activity);
+            }
             Documents = db.Documents.Where(d => d.ModuleId == id);
             foreach (var item in Documents)
             {
-                db.Documents.Remove(item);
+                item.ModuleId = null;
+                db.Entry(item).State = EntityState.Modified;
             }
             db.Modules.Remove(module);
             db.SaveChanges();

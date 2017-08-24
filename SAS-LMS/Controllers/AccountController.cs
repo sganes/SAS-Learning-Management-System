@@ -232,9 +232,7 @@ namespace SAS_LMS.Controllers
             db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("ViewStudent", "Courses", new { id = courseId });
-
         }
-
 
         //
         // GET: /Account/Register

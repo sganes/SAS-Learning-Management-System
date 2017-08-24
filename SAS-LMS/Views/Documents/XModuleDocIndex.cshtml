@@ -1,13 +1,11 @@
-﻿
-@model SAS_LMS.Models.Activity
+﻿@model SAS_LMS.Models.Module
 
-
-<span class="pull-right">@Html.ActionLink("Back", "Details", "Modules", new { id = Model.ModuleId}, "")</span>
+<span class="pull-right">@Html.ActionLink("Back", "Details", "Courses", new { id = Model.CourseId }, "")</span>
 <br />
 <br />
 <div>
     <button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Upload Document"
-            onclick="@("window.location.href='" + @Url.Action("ActivityDocCreate", "Documents", new { id = Model.Id}) + "'");">
+            onclick="@("window.location.href='" + @Url.Action("Create", "Documents", new { ModuleId = Model.Id}) + "'");">
         <span class="glyphicon glyphicon-upload"></span>Upload a New Document
     </button>
     <h3 id="Courseviewheading">
@@ -25,14 +23,10 @@
             <th>Document Description</th>
             <th>Created on</th>
             <th>Created by</th>
-            @if (Model.ActivityType.Name == "Submission")
-            {
-                <th>Submission End Date</th>
-            }
             <th></th>
 
         </tr>
-        @foreach (var item in Model.ActivityDocuments)
+        @foreach (var item in Model.ModuleDocuments)
             {
             <tr>
                 <td>
@@ -47,14 +41,9 @@
                 <td>
                     @item.CreatedBy
                 </td>
-                @if (Model.ActivityType.Name == "Submission")
-                {
-                    <td>@item.SubmitBy.Value.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
-                }
-                
                 <td>
                     <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete Document"
-                            onclick="@("window.location.href='" + @Url.Action("DeleteActivityDoc", "Documents", new { id = item.Id }) + "'");">
+                            onclick="@("window.location.href='" + @Url.Action("DeleteModuleDoc", "Documents", new { id = item.Id }) + "'");">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
                     <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Download Document"
@@ -62,7 +51,7 @@
                         <span class="glyphicon glyphicon-download"></span>
                     </button>
                 </td>
-          
+                <td></td>
             </tr>
         }
     </table>

@@ -39,12 +39,39 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
-        </div>
-    }
+    <div class="alert alert-warning">Deleting the Module will delete the following Activities associated with it</div>
+    <ul>
+        @foreach (var activity in Model.ModuleActivities)
+        {
+            <li>@activity.Name</li>
+        }
+    </ul>
+    <div class="alert alert-warning">Deleting the Module will move the following Module and Activity Documents to Repository</div>
+   <ul>
+       @foreach (var document in Model.ModuleDocuments)
+        {
+            <li>@document.DocName</li>
+        }
+       @foreach (var activity in Model.ModuleActivities)
+       {
+           foreach (var document in activity.ActivityDocuments)
+           {
+            <li>@document.DocName</li>
+           }
+       }
+    </ul>
+
+    <hr />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+    </div>
+}
 </div>

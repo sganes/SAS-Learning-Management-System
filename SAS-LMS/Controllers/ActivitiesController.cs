@@ -117,7 +117,8 @@ namespace SAS_LMS.Controllers
             Documents = db.Documents.Where(d => d.ActivityId == id);
             foreach (var item in Documents)
             {
-                db.Documents.Remove(item);
+                item.ActivityId = null;
+                db.Entry(item).State = EntityState.Modified;
             }
             db.Activities.Remove(activity);
             db.SaveChanges();

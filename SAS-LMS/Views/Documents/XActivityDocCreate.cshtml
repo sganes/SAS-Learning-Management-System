@@ -1,14 +1,11 @@
 ﻿@model SAS_LMS.Models.Document
 
-<h2>Upload a new document for  @ViewBag.Name</h2>
+<h2>Upload a new document for the Activity : @ViewBag.ActivityName</h2>
 
 @using (Html.BeginForm("Create", "Documents", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
-    @Html.HiddenFor(model => model.CourseId)
-    @Html.HiddenFor(model => model.ModuleId)
-    @Html.HiddenFor(model => model.ActivityId)
+    @Html.HiddenFor(model => model.ActivityId);
 
     <div class="form-horizontal">
         <hr />
@@ -32,7 +29,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.file, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.file, new { type = "file"  })
+                @Html.TextBoxFor(model => model.file, new { type = "file" })
                 @Html.ValidationMessageFor(model => model.file, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -49,21 +46,18 @@
             </div>
         }
 
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Upload" class="btn btn-default" />
             </div>
         </div>
-
-   
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+    @Html.ActionLink("Back", "ActivitiesDocIndex", new { id = ViewBag.ID })
 </div>
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -87,4 +81,3 @@
 
     </script>
 }
-

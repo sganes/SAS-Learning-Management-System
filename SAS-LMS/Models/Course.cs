@@ -15,7 +15,7 @@ namespace SAS_LMS.Models
         [Display(Name = "Description")]
         public string Description { get; set; }
 
-        [FutureDate(ErrorMessage = "Please enter a valid future date.")]
+        //[FutureDate(ErrorMessage = "Please enter a valid future date.")]
         [Required]
         [Display(Name = "Start Date")]
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy HH:mm}", ApplyFormatInEditMode = true)]

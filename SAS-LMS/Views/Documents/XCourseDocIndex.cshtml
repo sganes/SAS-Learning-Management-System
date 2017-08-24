@@ -5,7 +5,7 @@
 <br />
 <div>
     <button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Upload Document"
-            onclick="@("window.location.href='" + @Url.Action("Create", "Documents", new { id = Model.Id}) + "'");">
+            onclick="@("window.location.href='" + @Url.Action("Create", "Documents", new { CourseId = Model.Id}) + "'");">
         <span class="glyphicon glyphicon-upload"></span>Upload a New Document
     </button>
     <h3 id="Courseviewheading">

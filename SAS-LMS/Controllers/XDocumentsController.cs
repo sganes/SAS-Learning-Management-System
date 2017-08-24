@@ -9,9 +9,33 @@ using System.Web.Mvc;
 
 namespace SAS_LMS.Controllers
 {
-    public class DocumentsController : Controller
+    public class XDocumentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        //// GET: Documents for Course
+        //public ActionResult CourseDocIndex(int id)
+        //{
+        //    Course Courses;
+        //    Courses = db.Courses.Find(id);
+        //    return View(Courses);
+        //}
+
+        //// GET: Documents for Module
+        //public ActionResult ModuleDocIndex(int id)
+        //{
+        //    Module Module;
+        //    Module = db.Modules.Find(id);
+        //    return View(Module);
+        //}
+
+        //// GET: Documents for Activities
+        //public ActionResult ActivitiesDocIndex(int id)
+        //{
+        //    Activity Activity;
+        //    Activity = db.Activities.Find(id);
+        //    return View(Activity);
+        //}
 
         // GET: Documents
         public ActionResult Index(int? CourseId, int? ActivityId, int? ModuleId)
@@ -113,7 +137,6 @@ namespace SAS_LMS.Controllers
             {
                 Activity Activity = db.Activities.Find(ActivityId);
                 ViewBag.Name = Activity.Name;
-                ViewBag.ActivityType = Activity.ActivityType.Name;
             }
 
             var document = new Document { CourseId = CourseId, ModuleId = ModuleId, ActivityId = ActivityId };
@@ -126,7 +149,7 @@ namespace SAS_LMS.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(string DocName, string Description, int? CourseId, int? ModuleId, int? ActivityId, HttpPostedFileBase file, DateTime? SubmitBy)
+        public ActionResult Create(string DocName, string Description, int? CourseId, int? ModuleId, int? ActivityId, HttpPostedFileBase file)
         {
             Document document = new Document();
             if (Request.Files != null && Request.Files.Count == 1)
@@ -144,7 +167,6 @@ namespace SAS_LMS.Controllers
                     document.Description = Description;
                     document.CreatedDate = DateTime.Now;
                     document.CreatedBy = User.Identity.Name;
-                    document.SubmitBy = SubmitBy;
                     db.Documents.Add(document);
                     db.SaveChanges();
                     if (CourseId != null) return RedirectToAction("Index", new { CourseId = CourseId });
@@ -157,6 +179,90 @@ namespace SAS_LMS.Controllers
 
         }
 
+
+        //// GET: Documents/Create/Module
+        //public ActionResult ModuleDocCreate(int id)
+        //{
+        //    Module Module;
+        //    Module = db.Modules.Find(id);
+        //    ViewBag.ModuleName = Module.Name;
+        //    ViewBag.ID = id;
+        //    return View();
+        //}
+
+        // POST: Documents/Create/Course
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult ModuleDocCreate(string DocName, string Description, int id, HttpPostedFileBase file)
+        //{
+        //    Document document = new Document();
+        //    if (Request.Files != null && Request.Files.Count == 1)
+        //    {
+        //        if (file != null && file.ContentLength > 0)
+        //        {
+        //            var content = new byte[file.ContentLength];
+        //            file.InputStream.Read(content, 0, file.ContentLength);
+        //            document.file = content;
+        //            string extension = Path.GetExtension(file.FileName);
+        //            document.ModuleId = id;
+        //            document.DocName = DocName + extension;
+        //            document.Description = Description;
+        //            document.CreatedDate = DateTime.Now;
+        //            document.CreatedBy = User.Identity.Name;
+        //            db.Documents.Add(document);
+        //            db.SaveChanges();
+        //            return RedirectToAction("ModuleDocIndex", new { id = id });
+        //        }
+        //    }
+
+        //    return RedirectToAction("ModuleDocCreate");
+
+        //}
+
+        //// GET: Documents/Create/Activity
+        //public ActionResult ActivityDocCreate(int id)
+        //{
+        //    Activity Activity;
+        //    Activity = db.Activities.Find(id);
+        //    ViewBag.ActivityName = Activity.Name;
+        //    ViewBag.ID = id;
+        //    ViewBag.ActivityType = Activity.ActivityType.Name;
+        //    return View();
+        //}
+
+        //// POST: Documents/Create/Activity
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult ActivityDocCreate(string DocName, string Description, int id, HttpPostedFileBase file, DateTime? SubmitBy)
+        //{
+        //    Document document = new Document();
+        //    if (Request.Files != null && Request.Files.Count == 1)
+        //    {
+        //        if (file != null && file.ContentLength > 0)
+        //        {
+        //            var content = new byte[file.ContentLength];
+        //            file.InputStream.Read(content, 0, file.ContentLength);
+        //            document.file = content;
+        //            string extension = Path.GetExtension(file.FileName);
+        //            document.ActivityId = id;
+        //            document.DocName = DocName + extension;
+        //            document.Description = Description;
+        //            document.CreatedDate = DateTime.Now;
+        //            document.CreatedBy = User.Identity.Name;
+        //            document.SubmitBy = SubmitBy;
+        //            db.Documents.Add(document);
+        //            db.SaveChanges();
+        //            return RedirectToAction("ActivitiesDocIndex", new { id = id });
+        //        }
+        //    }
+
+        //    return RedirectToAction("ActivityDocCreate");
+
+        //}
 
         // GET: Documents/Edit/5
         public ActionResult Edit(int? id)
@@ -230,6 +336,74 @@ namespace SAS_LMS.Controllers
         }
 
 
+        ////Delect the Module Documents
+
+        //// GET: Documents/Delete/5
+        //public ActionResult DeleteModuleDoc(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Document document = db.Documents.Find(id);
+        //    if (document == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(document);
+        //}
+
+
+        //// POST: Documents/Delete/5
+        //[HttpPost, ActionName("DeleteModuleDoc")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteModuleDocConfirmed(int id)
+        //{
+        //    Document document = db.Documents.Find(id);
+        //    var DocModuleId = document.ModuleId;
+        //    db.Documents.Remove(document);
+        //    db.SaveChanges();
+        //    return RedirectToAction("ModuleDocIndex", new { id = DocModuleId });
+        //}
+
+
+        ////Delect the Activities Documents
+
+        //// GET: Documents/Delete/5
+        //public ActionResult DeleteActivityDoc(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Document document = db.Documents.Find(id);
+        //    if (document == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(document);
+        //}
+
+        //// POST: Documents/Delete/5
+        //[HttpPost, ActionName("DeleteActivityDoc")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteActivityDocConfirmed(int id)
+        //{
+        //    Document document = db.Documents.Find(id);
+        //    var DocActivityId = document.ActivityId;
+        //    db.Documents.Remove(document);
+        //    db.SaveChanges();
+        //    return RedirectToAction("ActivitiesDocIndex", new { id = DocActivityId });
+        //}
+
+        //public FileResult DownloadFile(int id)
+        //{
+        //    var document = db.Documents.Find(id);
+        //    string fileName = document.DocName;
+        //    return File(document.file, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+        //}
+
+
 
         public ActionResult SubmissionUploadFile(int id)
         {
@@ -275,20 +449,6 @@ namespace SAS_LMS.Controllers
 
         }
 
-        public FileResult DownloadFile(int id)
-        {
-            var document = db.Documents.Find(id);
-            string fileName = document.DocName;
-            return File(document.file, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
-        }
-
-        public ActionResult DocRepo()
-        {
-            IQueryable<Document> documents;
-            documents = db.Documents.Where(d => (d.CourseId == null) && (d.ActivityId == null) && (d.ModuleId == null));
-            return View(documents.ToList());
-
-        }
 
         protected override void Dispose(bool disposing)
         {

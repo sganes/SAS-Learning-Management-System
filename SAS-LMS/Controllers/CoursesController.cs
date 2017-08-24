@@ -168,19 +168,50 @@ namespace SAS_LMS.Controllers
         {
             Course course = db.Courses.Find(id);
             IQueryable<Document> Documents;
+            IQueryable<Module> Modules;
+            IQueryable<Activity> Activities;
+            IQueryable<ApplicationUser> Students;
+            Modules = db.Modules.Where(a => a.CourseId == id);
+            foreach (var module in Modules)
+            {
+                Activities = db.Activities.Where(a => a.ModuleId == module.Id);
+                foreach (var activity in Activities)
+                {
+                    Documents = db.Documents.Where(d => d.ActivityId == activity.Id);
+                    foreach (var item in Documents)
+                    {
+                        item.ActivityId = null;
+                        db.Entry(item).State = EntityState.Modified;
+                    }
+                    db.Activities.Remove(activity);
+                }
+                Documents = db.Documents.Where(d => d.ModuleId == module.Id);
+                foreach (var item in Documents)
+                {
+                    item.ModuleId = null;
+                    db.Entry(item).State = EntityState.Modified;
+                }
+                db.Modules.Remove(module);
+            }
             Documents = db.Documents.Where(d => d.CourseId == id);
             foreach (var item in Documents)
             {
-                db.Documents.Remove(item);
+                item.CourseId = null;
+                db.Entry(item).State = EntityState.Modified;
             }
             db.Courses.Remove(course);
+            Students = db.Users.Where(u => u.CourseId == id);
+            foreach (var student in Students)
+            {
+                student.CourseId = null;
+                db.Entry(student).State = EntityState.Modified;
+            }
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         // Courses/ViewStudent
-
-
         public ActionResult ViewStudent(int? id)
         {
             if (id == null)

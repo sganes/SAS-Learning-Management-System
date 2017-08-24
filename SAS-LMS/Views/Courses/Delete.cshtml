@@ -30,26 +30,88 @@
         <dd>
             @Html.DisplayFor(model => model.StartDate)
         </dd>
-
     </dl>
+
+
+    <div class="alert alert-warning">Deleting the Course will delete the following Modules and Activities associated with it</div>
+    <ul>
+        @foreach (var Module in Model.CourseModules)
+        {
+            <li>
+                @Module.Name
+                @foreach (var Activity in Module.ModuleActivities)
+                {
+                <ul><li>@Activity.Name</li></ul>
+                }
+            </li>
+
+        }
+    </ul>
+    </div>
+    <div class="alert alert-warning">Deleting the Course will move the following Course, Module and Activity Documents to the Document Repository</div>
+<ul>
+    @foreach (var document in Model.CourseDocuments)
+    {
+        <li>
+            @document.DocName
+        </li>
+
+    }
+    @foreach (var Module in Model.CourseModules)
+    {
+        foreach (var document in Module.ModuleDocuments)
+        {
+            <li>
+                @document.DocName
+            </li>
+
+        }
+        foreach (var activity in Module.ModuleActivities)
+        {
+            foreach (var document in activity.ActivityDocuments)
+            {
+                <li>
+                    @document.DocName
+            </li>
+            }
+        }
+
+    }
+
+</ul>   
+<div class="alert alert-warning">Deleting the Course will move the students out of the course</div>
+<ul>
+    @foreach (var student in Model.CourseParticipants)
+    {
+        <li>
+            @student.FullName
+        </li>
+    }
+</ul>  
+
+<hr />
+ 
+
+<div>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        if (Model.CourseParticipants.Count == 0)
-        {
+        //if (Model.CourseParticipants.Count == 0)
+        //{
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |
                 @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
             </div>
-        }
+        @*}
         else
         {
             <div class="alert alert-danger">Please go back and delete the enrolled students before deleting the course</div>
             <br />
             @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
-        }
+        }*@
 
     }
+
 </div>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<SAS_LMS.Models.Document>
+
+<div class="pull-right">
+    @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+</div>
+
+<h2>Document Repository</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DocName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Download Document"
+                    onclick="@("window.location.href='" + @Url.Action("DownloadFile", "Documents", new { id = item.Id }) + "'");">
+                <span class="glyphicon glyphicon-download"></span>
+            </button>
+        </td>
+    </tr>
+}
+
+</table>

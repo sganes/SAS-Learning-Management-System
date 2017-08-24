@@ -1,38 +1,112 @@
 ﻿@model IEnumerable<SAS_LMS.Models.Document>
 
 
-<div class="pull-right">
-    @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
-</div>
-<br />
-<hr />
 
-
-<h2>Uploaded documents for the course</h2>
-
-<br />
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DocName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DocName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Download", "DownloadFile", new { id=item.Id }) 
-        </td>
-    </tr>
+@if (ViewBag.DocumentFor == "Course")
+{
+    <span class="pull-right">
+        @Html.ActionLink("Back", "Details", "Courses", new { id = ViewBag.Id }, null)
+    </span>
+}
+@if (ViewBag.DocumentFor == "Module")
+{
+    <span class="pull-right">
+        @Html.ActionLink("Back", "Details", "Courses", new { id = ViewBag.ModuleCourseId }, null)
+    </span>
+}
+@if (ViewBag.DocumentFor == "Activity")
+{
+    <span class="pull-right">
+        @Html.ActionLink("Back", "Details", "Modules", new { id = ViewBag.ActivityModuleId }, null)
+    </span>
 }
 
-</table>
+<span class="pull-right">
+   &nbsp; | &nbsp;
+</span>
+
+<span class="pull-right">
+    @Html.ActionLink("Document Repository", "DocRepo", "Documents")
+</span>
+
+<br />
+<div>
+    @if (ViewBag.DocumentFor == "Course")
+    {
+        <button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Upload Document"
+                onclick="@("window.location.href='" + @Url.Action("Create", "Documents", new { CourseId = ViewBag.Id}) + "'");">
+            <span class="glyphicon glyphicon-upload"></span>Upload a New Document
+        </button>
+    }
+    @if (ViewBag.DocumentFor == "Module")
+    {
+        <button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Upload Document"
+                onclick="@("window.location.href='" + @Url.Action("Create", "Documents", new { ModuleId = ViewBag.Id}) + "'");">
+            <span class="glyphicon glyphicon-upload"></span>Upload a New Document
+        </button>
+    }
+    @if (ViewBag.DocumentFor == "Activity")
+    {
+        <button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Upload Document"
+                onclick="@("window.location.href='" + @Url.Action("Create", "Documents", new { ActivityId = ViewBag.Id}) + "'");">
+            <span class="glyphicon glyphicon-upload"></span>Upload a New Document
+        </button>
+    }
+  
+    <h3 id="Courseviewheading">
+
+       Documents for @ViewBag.Name
+
+    </h3>
+</div>
+<br />
+<br />
+<div>
+    <table class="table table-responsive table-hover">
+        <tr>
+            <th>Document Name</th>
+            <th>Document Description</th>
+            <th>Created on</th>
+            <th>Created by</th>
+            @if (ViewBag.ActivityType == "Submission")
+            {
+               <th>Submission End Date</th>
+            }
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.DocName
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @item.CreatedDate.ToShortDateString()
+                </td>
+                <td>
+                    @item.CreatedBy
+                </td>
+                @if (ViewBag.ActivityType == "Submission")
+                {
+                    <td>@item.SubmitBy.Value.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
+                }
+
+                <td>
+                    <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Delete Document"
+                            onclick="@("window.location.href='" + @Url.Action("Delete", "Documents", new { id = item.Id }) + "'");">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" class="btn btn-default btn-xs pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Download Document"
+                            onclick="@("window.location.href='" + @Url.Action("DownloadFile", "Documents", new { id = item.Id }) + "'");">
+                        <span class="glyphicon glyphicon-download"></span>
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
