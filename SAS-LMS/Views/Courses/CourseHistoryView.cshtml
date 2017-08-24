@@ -43,11 +43,10 @@
 <hr />
 <br />
 <div>
-    <h2 id="Courseviewheading">Details and Documents</h2>
+    <h2 id="Courseviewheading">Modules and Activities</h2>
     <br />
     <table class="table table-condensed table-responsive table-bordered">
         <tr>
-            <th>Course</th>
             <th>Module </th>
             <th>Activity</th>
             <th>Type</th>
@@ -58,7 +57,7 @@
                 <th>Upload Submission</th> }
 
         </tr>
-        <tr id="CourseView">
+        @*<tr id="CourseView">
             <td>
                 @Html.ActionLink(@Model.Name, "StudentsCourseDocuments", "Documents", new { id = Model.Id }, new { Class = "action add", title = "Course Information" })
             </td>
@@ -69,7 +68,7 @@
             {
                 <td></td>
             }
-        </tr>
+        </tr>*@
         @if (Model.CourseModules.Count() == 0)
         {
 
@@ -88,9 +87,9 @@
             {
 
                 <tr id="Module">
-                    <td></td>
+                   
                     <td>
-                        @Html.ActionLink(@module.Name, "StudentsModuleDocuments", "Documents", new { id = module.Id }, new { Class = "action add", title = "Module Information" })
+                        @Html.ActionLink(@module.Name, "StudentsModuleDocuments", "Documents", new { id = module.Id }, new { Class = "action add", title = "Module Documents" })
                     </td>
                     <td colspan="2"></td>
                     <td>@module.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>
@@ -105,7 +104,7 @@
                 {
 
                     <tr id="Activities">
-                        <td></td>
+                        
                         <td></td>
                         <td colspan="4">
                             No Activities
@@ -119,7 +118,7 @@
                     foreach (var activities in module.ModuleActivities)
                     {
                         <tr id="Activities">
-                            <td></td>
+                           
                             <td></td>
                             <td id="ActivitiesName">
                                 @Html.ActionLink(@activities.Name, "StudentsActivityDocuments", "Documents", new { id = activities.Id }, new { Class = "action add", title = "Activity Documents" })
@@ -131,7 +130,7 @@
                             {
                                 if (activities.ActivityType.Name == "Submission")
                                 {
-                                    <td>@Html.ActionLink("Upload", "SubmissionUploadFile", "Documents", new { id = activities.Id }, "")</td>
+                                    <td id="Cellaligncenter">@Html.ActionLink("Upload", "SubmissionUploadFile", "Documents", new { id = activities.Id }, "")</td>
                                 }
                                 else
                                 {

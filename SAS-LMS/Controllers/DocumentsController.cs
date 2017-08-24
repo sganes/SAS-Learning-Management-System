@@ -71,10 +71,9 @@ namespace SAS_LMS.Controllers
         // GET: Course Documents for Students
         public ActionResult StudentsCourseDocuments(int id)
         {
-            IQueryable<Document> documents;
-            documents = db.Documents.Where(d => d.CourseId == id);
-            ViewBag.ID = id;
-            return View(documents.ToList());
+            Course course;
+            course = db.Courses.Find(id);
+            return View(course);
         }
 
         // GET: Module Documents for Students

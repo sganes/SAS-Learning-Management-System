@@ -1,48 +1,69 @@
-﻿@model IEnumerable<SAS_LMS.Models.Document>
+﻿@model SAS_LMS.Models.Course
+
+<div>
+    <span class="pull-right">@Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })</span>
+</div>
+
+<br />
+
+<div>
+
+    <br />
+    <table class="table table-responsive table-bordered" >
+        <tr>
+           
+            <th>Document Name</th>
+            <th>Document Description</th>
+            <th>Created Date</th>
+            <th>Created By</th>
+        </tr>
+        <tr id="CourseView"><td colspan="5" id="DocView">Course : @Model.Name</td></tr>
+        @foreach (var item in Model.CourseDocuments)
+            {
+            <tr >
+               
+                <td>@Html.ActionLink(@item.DocName, "DownloadFile", "Documents", new { id = item.Id },"")</td>
+                <td> @item.Description</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.CreatedBy</td>
+            </tr>
+        }
+
+        @foreach (var module in Model.CourseModules)
+        {
+
+            <tr id="Module"><td colspan="5" id="DocView">Module : @module.Name</td></tr>
+            foreach (var item in module.ModuleDocuments)
+            {
+                <tr >
+                    <td>@Html.ActionLink(@item.DocName, "DownloadFile", "Documents", new { id = item.Id }, "")</td>
+
+                    <td>@item.Description</td>
+                    <td>@item.CreatedDate</td>
+                    <td>@item.CreatedBy</td>
+                </tr>
+
+            }
+            foreach (var activity in module.ModuleActivities)
+            {
+                <tr id="Activities"><td colspan="5" id="DocView">Activity : @activity.Name</td></tr>
+                foreach (var item in activity.ActivityDocuments)
+                {
+                    <tr >
+                        
+                        <td>@Html.ActionLink(@item.DocName, "DownloadFile", "Documents", new { id = item.Id }, "")</td>
+
+                        <td>@item.Description</td>
+                        <td>@item.CreatedDate</td>
+                        <td>@item.CreatedBy</td>
+                    </tr>
+                }
 
 
+            }
+           
+        }
 
-@*<button type="button" class="btn btn-default btn-lg pull-right" onmouseover="this.style.cursor='pointer'" data-toggle="tooltip" title="Student Information"
-        onclick="@("window.location.href='" + @Url.Action("Create", "Documents", new { id = ViewBag.ID }) + "'");">
-    <span class="glyphicon glyphicon-upload"></span>Upload a New Document
-</button>*@
-
-                      <div>
-                          <span class="pull-right">@Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })</span>
-                          <h2 id="Courseviewheading">Course documents</h2>
-                          <br />
-                          <table class="table">
-                              <tr>
-                                  <th>
-                                      @Html.DisplayNameFor(model => model.DocName)
-                                  </th>
-                                  <th>
-                                      @Html.DisplayNameFor(model => model.Description)
-                                  </th>
-                                  <th>
-                                      @Html.DisplayNameFor(model => model.CreatedBy)
-                                  </th>
-                                  <th></th>
-                              </tr>
-
-                              @foreach (var item in Model)
-                              {
-                              <tr>
-                                  <td>
-                                      @Html.DisplayFor(modelItem => item.DocName)
-                                  </td>
-                                  <td>
-                                      @Html.DisplayFor(modelItem => item.Description)
-                                  </td>
-                                  <td>
-                                      @Html.DisplayFor(modelItem => item.CreatedBy)
-                                  </td>
-                                 <td>
-                                      @Html.ActionLink("Download", "DownloadFile", new { id = item.Id })
-                                  </td>
-                              </tr>
-                              }
-
-                          </table>
-                      </div>
-
+        
+    </table>
+</div>
