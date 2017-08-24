@@ -122,7 +122,7 @@
                             <td></td>
                             <td></td>
                             <td id="ActivitiesName">
-                                @Html.ActionLink(@activities.Name, "StudentsActivityDocuments", "Documents", new { id = activities.Id }, new { Class = "action add", title = "Activity Information" })
+                                @Html.ActionLink(@activities.Name, "StudentsActivityDocuments", "Documents", new { id = activities.Id }, new { Class = "action add", title = "Activity Documents" })
                             </td>
                             <td>@activities.ActivityType.Name</td>
                             <td>@activities.StartDate.ToString(string.Format("dd MMM yyyy HH:mm"))</td>

@@ -21,34 +21,45 @@
                 }
                 else
                 {
-                foreach (var course in Model)
-                {
-                    <li>
-                        <div class="date">
-                            <div class="monthyear">
-                                @course.StartDate.ToString("MMM yyyy")
+                    foreach (var course in Model)
+                    {
+                        <li>
+                            <div class="date">
+                                <div class="monthyear">
+                                    @if (course.StartDate <= DateTime.Now)
+                                    {
+                                    <p style="background-color:forestgreen;">
+                                        @course.StartDate.ToString("MMM yyyy")
+                                    </p>
+                                    }
+                                    else
+                                    {
+                                        <p style="background-color:grey;">
+                                            @course.StartDate.ToString("MMM yyyy")
+                                        </p>
+                                    }
+                                </div>
+                                <div class="day">
+                                    @course.StartDate.ToString("d ")
+                                </div>
                             </div>
-                            <div class="day">
-                                @course.StartDate.ToString("d ")
+                            <div class="details">
+
+                                @Html.ActionLink(@course.Name, "Details", "Courses", new { id = course.Id }, "")
+
+                                <br />
+                                <span class="coursedescription">
+                                    @course.Description
+                                </span>
                             </div>
-                        </div>
-                        <div class="details">
+                            <hr />
+                        </li>
 
-                            @Html.ActionLink(@course.Name, "Details", "Courses", new { id = course.Id }, "")
-
-                            <br />
-                            <span class="coursedescription">
-                                @course.Description
-                            </span>
-                        </div>
-                        <hr />
-                    </li>
-
-                }
+                    }
                 }
 
             </ul>
-        </div>
+      </div>
        
     </div>
 </div>
