@@ -172,12 +172,18 @@ namespace SAS_LMS.Controllers
             IQueryable<Activity> Activities;
             IQueryable<ApplicationUser> Students;
             Modules = db.Modules.Where(a => a.CourseId == id);
+
+            //Iterate through Modules
             foreach (var module in Modules)
             {
                 Activities = db.Activities.Where(a => a.ModuleId == module.Id);
+
+                //Iterate through Activities
                 foreach (var activity in Activities)
                 {
                     Documents = db.Documents.Where(d => d.ActivityId == activity.Id);
+
+                    //Iterate through Documents and remove the activity associated with it
                     foreach (var item in Documents)
                     {
                         item.ActivityId = null;
@@ -185,7 +191,10 @@ namespace SAS_LMS.Controllers
                     }
                     db.Activities.Remove(activity);
                 }
+
+                //Iterate through Modules
                 Documents = db.Documents.Where(d => d.ModuleId == module.Id);
+                //Iterate through Module Documents and remove the Module associated with it
                 foreach (var item in Documents)
                 {
                     item.ModuleId = null;
@@ -193,6 +202,8 @@ namespace SAS_LMS.Controllers
                 }
                 db.Modules.Remove(module);
             }
+
+            //Iterate through Course Documents and remove the Course associated with it
             Documents = db.Documents.Where(d => d.CourseId == id);
             foreach (var item in Documents)
             {
@@ -200,6 +211,8 @@ namespace SAS_LMS.Controllers
                 db.Entry(item).State = EntityState.Modified;
             }
             db.Courses.Remove(course);
+
+            //Iterate through the Students enrolled and remove them from the course
             Students = db.Users.Where(u => u.CourseId == id);
             foreach (var student in Students)
             {
